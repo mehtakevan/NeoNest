@@ -6,6 +6,7 @@ const { random } = require("colors");
 const randomstring = require("randomstring");
 const session = require('express-session');
 const { use } = require("../routes/userRoutes");
+const { createAccount } = require('../controllers/accountController')
 
 const otpmap = new Map();
 
@@ -124,6 +125,7 @@ const registerUser = asyncHandler(async (req, res) => {
   
     if (user && (await user.matchPassword(password))) {
       if(user.isVerified){
+        const found = await createAccount(email);
         res.json({
           _id: user._id,
           name: user.name,
