@@ -4,10 +4,35 @@ const generateToken = require("../config/generateToken");
 const nodemailer = require("nodemailer");
 const { random } = require("colors");
 const randomstring = require("randomstring");
+const session = require('express-session');
+const { use } = require("../routes/userRoutes");
 
 const otpmap = new Map();
 
-const sendmail = (async(email) =>{
+const verifyotp = asyncHandler(async(req,res) =>{
+  const received_otp = req.body.otp;
+  const email = req.session.cusEmail;
+  const required_otp = otpmap.get(email);
+
+  console.log(email);
+  console.log(received_otp);
+  console.log(required_otp);
+
+
+  if(received_otp === required_otp){
+    const user = await User.findOneAndUpdate(
+      { email : email },
+      { $set: { ['isVerified'] : true } },
+      { new: true });
+    
+    console.log(user);
+    res.status(201).send("User verified");
+  }
+  else
+    res.status(500).send("enter valid otp");
+})
+
+const sendmail = asyncHandler(async(email) =>{
 
   const otp = randomstring.generate({
     length: 6,
@@ -34,20 +59,14 @@ const sendmail = (async(email) =>{
       subject: 'Sending Email using Node.js',
       text: `kindly enter the otp : ${otp}`
       };
-
-      transporter.sendMail(mailOptions, function(error, info){
-
-        if (error) {
-        
-          
-        console.log(error);
-        res.status(500);
-        } else {
-          console.log('Email sent: ' + info.response);
-          res.status(200)
-        }
-        
-        });
+      try{
+        const info = await transporter.sendMail(mailOptions)
+        console.log(info);
+        return info;
+      }catch(error){
+        console.error("error in sendmail",error);
+        throw new Error("Error");
+      }
 })
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -75,18 +94,24 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   
     if (user) {
-      const sendmail_res = await sendmail(user.email);
-      if(sendmail_res.status === 200){
-      res.status(201).json({
-       _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: generateToken(user._id),
-      });
-    }
-    else{
-      res.status(500);
-    }
+      try {
+        const sendmail_res = await sendmail(user.email);
+        req.session.cusEmail = user.email;
+        if (sendmail_res && sendmail_res.response.includes('OK')) {
+          res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            token: generateToken(user._id),
+          });
+        } else {
+          console.error('Error sending email:', error)
+          res.status(500).send('Error sending email');
+        }
+      } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).send('Error sending email');
+      }
     } else {
       res.status(400);
       throw new Error("User not found");
@@ -98,17 +123,38 @@ const registerUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email });
   
     if (user && (await user.matchPassword(password))) {
-      res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        
-        token: generateToken(user._id),
-      });
+      if(user.isVerified){
+        res.json({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          
+          token: generateToken(user._id),
+        })
+      }
+      else{
+        try{
+          const sendmail_res = await sendmail(user.email);
+          req.session.cusEmail = user.email;
+          if (sendmail_res && sendmail_res.response.includes('OK')) {
+            res.status(201).json({
+              _id: user._id,
+              name: user.name,
+              email: user.email,
+              token: generateToken(user._id),
+            });
+          } else {
+            console.error('Error sending email:', error)
+            res.status(500).send('Error sending email');
+          }
+        }catch(error){
+          res.status(500).send(error);
+        }
+      }
     } else {
       res.status(401);
       throw new Error("Invalid Email or Password");
     }
   });
   
-  module.exports = {  registerUser, authUser };
+  module.exports = {  registerUser, authUser, verifyotp };

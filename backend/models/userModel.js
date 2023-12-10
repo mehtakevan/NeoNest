@@ -7,6 +7,7 @@ const userModel = mongoose.Schema({
   password: { type: "String", required: true },
   age: { type: Number },
   email: { type: "String", unique: true, required: true },
+  isVerified : {type: Boolean, default : false},
   contact: {
     type: String, // Assuming your contact number is stored as a string
     unique: true,
