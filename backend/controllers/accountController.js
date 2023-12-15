@@ -21,13 +21,12 @@ const createAccount = asyncHandler(async (email) => {
       const randomNumber = Math.floor(Math.random() * 10000); // You can adjust the range as needed
       const dataToHash = `${timestamp}${randomNumber}`;
       const checksum = hashFunction(dataToHash); // Replace hashFunction with an actual hashing function
-      const accountNumber =
-        `${prefix}${timestamp}${randomNumber}${checksum}`.slice(0, length);
+      const accountNumber =`${prefix}${timestamp}${randomNumber}${checksum}`.slice(0, length);
+      console.log(accountNumber);
         const acct = await Account.create({
            accountholder : user._id,
            accountNumber : accountNumber,
         });
-
         if(acct){
             console.log(acct);
             return acct;
@@ -39,7 +38,15 @@ const createAccount = asyncHandler(async (email) => {
     }
   } catch (error){
     console.error("error in accnt creation",error);
-    res.status(401).send("error");
+    throw new Error(error);
+  }
+});
+
+const transfer = asyncHandler(async(req,res)=>{
+  const {email, accountNumber} = req.body;
+
+  if(!email && !accountNumber){
+    res.status(500).send("Please enter email or accountNumber");
   }
 });
 
