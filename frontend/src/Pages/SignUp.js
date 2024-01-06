@@ -8,7 +8,7 @@ const SignUp = () => {
               Get started by creating your account
             </span>
             <div className="py-2 md:py-4">
-              <span className="mb-2 text-sm md:text-md">Full Name</span>
+              <span className="mb-2 text-sm md:text-md">User Name</span>
               <input
                 type="text"
                 className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
@@ -19,7 +19,7 @@ const SignUp = () => {
             <div className="py-2 md:py-4">
               <span className="mb-2 text-sm md:text-md">Email</span>
               <input
-                type="text"
+                type="email"
                 className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
                 name="email"
                 id="email"
@@ -31,6 +31,36 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 id="password"
+                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+              />
+            </div>
+            <div className="py-2 md:py-4">
+              <span className="mb-2 text-sm md:text-md">Age</span>
+              <input
+                type="number"
+                name="age"
+                id="age"
+                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+              />
+            </div>
+            <div className="py-2 md:py-4">
+              <span className="mb-2 text-sm md:text-md">Contact Number</span>
+              <input
+                type="number"
+                maxlength = "10"
+                minlength = "10"
+                name="contact"
+                id="contact"
+                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+              />
+            </div>
+            <div className="py-2 md:py-4">
+              <span className="mb-2 text-sm md:text-md">PAN Number</span>
+              <input
+                pattern = "[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                type="text"
+                name="pan"
+                id="pan"
                 className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
               />
             </div>
