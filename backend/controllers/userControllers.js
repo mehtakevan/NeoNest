@@ -146,6 +146,7 @@ const authUser = asyncHandler(async (req, res) => {
 
   if (user && (await user.matchPassword(password))) {
     if (user.isVerified) {
+      req.session.user = user;
       res.json({
         _id: user._id,
         name: user.name,
@@ -157,6 +158,7 @@ const authUser = asyncHandler(async (req, res) => {
         const sendmail_res = await sendmail(user.email,0);
         req.session.cusEmail = user.email;
         if (sendmail_res && sendmail_res.response.includes("OK")) {
+          req.session.user = user;
           res.status(201).json({
             _id: user._id,
             name: user.name,
