@@ -92,6 +92,7 @@ const sendmail = asyncHandler(async (email, flag) => {
 });
 
 const registerUser = asyncHandler(async (req, res) => {
+  console.log(req.body)
   const { username, age, email, password, contact, panNumber } = req.body;
 
   if (!username || !email || !password || !panNumber) {
@@ -145,6 +146,7 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
+    console.log(user);
     if (user.isVerified) {
       req.session.user = user;
       res.json({
@@ -170,7 +172,7 @@ const authUser = asyncHandler(async (req, res) => {
           res.status(500).send("Error sending email");
         }
       } catch (error) {
-        res.status(500).send(error);
+        res.status(500).json({error});
       }
     }
   } else {
