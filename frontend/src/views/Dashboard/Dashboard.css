@@ -1,0 +1,41 @@
+/* Dashboard.css */
+
+.dashboard-container {
+  display: flex;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.cards-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.grey-container {
+  background-color: rgba(0, 0, 255, 0.5); 
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 450px;
+  width: 400px;
+}
+
+.card-icon {
+  color: #d34b4b; 
+}
+
+.dashboard-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+}
