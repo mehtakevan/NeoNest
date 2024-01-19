@@ -161,12 +161,7 @@ const authUser = asyncHandler(async (req, res) => {
         req.session.cusEmail = user.email;
         if (sendmail_res && sendmail_res.response.includes("OK")) {
           req.session.user = user;
-          res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-          });
+          res.status(201).json({data : { msg : "Mail sent for verification"}});
         } else {
           console.error("Error sending email:", error);
           res.status(500).send("Error sending email");
