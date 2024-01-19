@@ -6,14 +6,73 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
-const setPassword = () => {
+const SetPassword = () => {
 
-  // const [show, setShow] = useState(false);
-  // const handleClick = () => setShow(!show);
-  // const toast = useToast();
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  const toast = useToast();
 
-  // const [confirmpassword, setConfirmpassword] = useState();
-  // const [password, setPassword] = useState();
+  const [confirmpassword, setConfirmpassword] = useState();
+  const [password, setPassword] = useState();
+
+  const changePassword = async () => {
+    if (!password || !confirmpassword) {
+        toast({
+          title: "Please fill all the fields.",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        return;
+      }
+
+    if (password !== confirmpassword) {
+        toast({
+          title: "Passwords Do Not Match",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        return;
+    }
+    console.log(password)
+    console.log(confirmpassword)
+    try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+          },
+        };
+        const data  = await axios.post(
+          "http://localhost:5000/api/user/setpassword",
+          {
+            password, confirmpassword
+          },
+          config
+        );
+        console.log(data);
+        toast({
+          title: "Password Changed Successfully",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        localStorage.setItem("userInfo", JSON.stringify(data));
+      } catch (error) {
+        console.log(error)
+        toast({
+          title: "Error Occured!",
+          //description: error.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
+}
 
     return (
         <div>
@@ -32,33 +91,35 @@ const setPassword = () => {
                 >
                   New Password
                 </FormLabel>
-                <Input
+                <input
                   type="password"
                   name="password"
                   id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
-                ></Input>
+                  onChange={(e) => setPassword(e.target.value)}
+                ></input>
               </div>
               </FormControl>
 
               <FormControl>
               <div>
               <FormLabel
-                  htmlFor="confirm-password"
+                  htmlFor="confirmpassword"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Confirm password
               </FormLabel>
-                <Input
+                <input
                   type="password"
-                  name="confirm-password"
-                  id="confirm-password"
+                  name="confirmpassword"
+                  id="confirmpassword"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
-                ></Input>
+                  onChange={(e) => setConfirmpassword(e.target.value)}
+                ></input>
               </div>
               </FormControl>
 
@@ -89,7 +150,7 @@ const setPassword = () => {
               </div>
             
             <Button
-              //onClick={() => changePassword()}
+              onClick={() => changePassword()}
               className="mt-3 w-50% text-black bg-gray-100 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
               Reset password
@@ -104,4 +165,4 @@ const setPassword = () => {
     );
 }
 
-export default setPassword
+export default SetPassword

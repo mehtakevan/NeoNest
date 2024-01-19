@@ -218,7 +218,7 @@ const Signup = () => {
         },
       };
       const data  = await axios.post(
-        "http://192.168.126.171:5000/api/user",
+        "http://localhost:5000/api/user",
         {
           username,
           email,
@@ -239,9 +239,10 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
+      console.log(error)
       toast({
         title: "Error Occured!",
-        description: error.response.data.message,
+        //description: error.response.data.message,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -253,7 +254,7 @@ const Signup = () => {
   return (
     <>
     
-           <div className="w-full h-screen flex flex-col md:flex-row items-start md:pl-10 lg:pl-20 xl:pl-40">
+      <div className="w-full h-screen flex flex-col md:flex-row items-start md:pl-10 lg:pl-20 xl:pl-40">
        <div className="flex flex-col justify-center p-4 md:p-10 lg:p-14 xl:p-20 w-full md:w-1/2">
        <span className="mb-3 text-2xl md:text-4xl font-bold">Create an Account</span>
            <span className="font-light text-gray-400 mb-4 md:mb-8">

@@ -190,13 +190,18 @@ const forgotpassword = asyncHandler(async (req, res) => {
 });
 
 const setpassword = asyncHandler(async(req,res)=>{
-  const {password, cnf_password} = req.body;
+  console.log("HI")
+  const password = req.body.password
+  const cnf_password = req.body.confirmpassword;
+  console.log(password)
+  console.log(cnf_password)
 
   if(password != cnf_password){
     res.status(500).send("Password and cnf_Password does not match");
   }
   else{
     const email = req.session.email;
+    console.log(email)
     const user = await User.findOne({email:email});
     if(user){
       user.password = password;
