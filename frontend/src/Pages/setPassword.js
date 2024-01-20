@@ -2,21 +2,33 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
 const SetPassword = () => {
-
+  // console.log("HELIIEEEEEEE ");
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
 
   const [confirmpassword, setConfirmpassword] = useState();
-  const [password, setPassword] = useState();
+  const [pass, setPass] = useState();
+  // let email;
+  const currentUrl = window.location.href;
+
+  // Create a URL object
+  const url = new URL(currentUrl);
+
+  // Access the search parameters using URLSearchParams
+  const queryParams = new URLSearchParams(url.search);
+
+  // Get individual parameter values
+  const email = queryParams.get('email');
 
   const changePassword = async () => {
-    if (!password || !confirmpassword) {
+    console.log("HEELLLLLOOO  ");
+    if (!pass || !confirmpassword) {
         toast({
           title: "Please fill all the fields.",
           status: "warning",
@@ -27,7 +39,7 @@ const SetPassword = () => {
         return;
       }
 
-    if (password !== confirmpassword) {
+    if (pass !== confirmpassword) {
         toast({
           title: "Passwords Do Not Match",
           status: "warning",
@@ -37,8 +49,9 @@ const SetPassword = () => {
         });
         return;
     }
-    console.log(password)
+    console.log(pass)
     console.log(confirmpassword)
+    console.log(email)
     try {
         const config = {
           headers: {
@@ -48,7 +61,9 @@ const SetPassword = () => {
         const data  = await axios.post(
           "http://localhost:5000/api/user/setpassword",
           {
-            password, confirmpassword
+            email,
+            pass, 
+            confirmpassword
           },
           config
         );
@@ -98,7 +113,7 @@ const SetPassword = () => {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setPass(e.target.value)}
                 ></input>
               </div>
               </FormControl>

@@ -7,7 +7,8 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
 const Verifyotp = () => {
-
+  const sessiondata = JSON.parse(localStorage.getItem('userInfo'));
+  const email = sessiondata.data.email;
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -36,6 +37,7 @@ const Verifyotp = () => {
       const data  = await axios.post(
         "http://localhost:5000/api/user/otp",
         {
+          email,
           otp
         },
         config

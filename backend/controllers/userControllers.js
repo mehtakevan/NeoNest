@@ -17,7 +17,7 @@ const verifyotp = asyncHandler(async (req, res) => {
     received_otp = parseInt(received_otp);
   }
 
-  const email = req.session.cusEmail;
+  const email = req.body.email;
   const required_otp = otpmap.get(email);
 
   console.log(email);
@@ -78,7 +78,7 @@ const sendmail = asyncHandler(async (email, flag) => {
       from: "sdpneobank12@gmail.com",
       to: email,
       subject: "Sending Email using Node.js",
-      text: `Click on this link to access the API: https://localhost:5000/api/user/setpassword`,
+      text: `Click on this link to access the API: https://localhost:3000/setpassword/?email=${email}`,
     };
   }
   try {
@@ -191,7 +191,7 @@ const forgotpassword = asyncHandler(async (req, res) => {
 
 const setpassword = asyncHandler(async(req,res)=>{
   console.log("HI")
-  const password = req.body.password
+  const password = req.body.pass;
   const cnf_password = req.body.confirmpassword;
   console.log(password)
   console.log(cnf_password)
@@ -200,14 +200,19 @@ const setpassword = asyncHandler(async(req,res)=>{
     res.status(500).send("Password and cnf_Password does not match");
   }
   else{
-    const email = req.session.email;
+    const email = req.body.email;
     console.log(email)
+    try{
     const user = await User.findOne({email:email});
     if(user){
       user.password = password;
       await user.save();
       res.status(201).send("Password reset done");
     }
+  }catch(error){
+    console.log(error);
+    throw new Error(error);
+  }
   }
 
 });
