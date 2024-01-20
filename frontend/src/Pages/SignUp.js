@@ -218,7 +218,7 @@ const Signup = () => {
         },
       };
       const data  = await axios.post(
-        "http://192.168.126.171:5000/api/user",
+        "http://localhost:5000/api/user",
         {
           username,
           email,
@@ -239,9 +239,10 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
+      console.log(error)
       toast({
         title: "Error Occured!",
-        description: error.response.data.message,
+        //description: error.response.data.message,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -252,18 +253,19 @@ const Signup = () => {
 
   return (
     <>
-           <div className="w-full h-screen flex flex-col md:flex-row items-start md:pl-10 lg:pl-20 xl:pl-40">
+    
+      <div className="w-full h-screen flex flex-col md:flex-row items-start md:pl-10 lg:pl-20 xl:pl-40">
        <div className="flex flex-col justify-center p-4 md:p-10 lg:p-14 xl:p-20 w-full md:w-1/2">
        <span className="mb-3 text-2xl md:text-4xl font-bold">Create an Account</span>
            <span className="font-light text-gray-400 mb-4 md:mb-8">
              Get started by creating your account
            </span>
-   <VStack spacing="5px">
+   {/* <VStack spacing="5px"> */}
    <div className="py-2 md:py-4">
-     {/* <span className="mb-2 text-sm md:text-md">User Name</span> */}
+     <span className="mb-2 text-sm md:text-md">User Name</span>
      <FormControl id="username" isRequired>
-       <FormLabel>Name</FormLabel>
-       <Input
+       {/* <FormLabel>Name</FormLabel> */}
+       <input
          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          placeholder="Enter Your Name"
          onChange={(e) => setusername(e.target.value)}
@@ -274,8 +276,8 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="email" isRequired>
-       <FormLabel>Email Address</FormLabel>
-       <Input
+     <span className="mb-2 text-sm md:text-md">Email Address</span>
+       <input
          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="email"
          placeholder="Enter Your Email Address"
@@ -287,9 +289,9 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="password" isRequired>
-       <FormLabel>Password</FormLabel>
+     <span className="mb-2 text-sm md:text-md">Password</span>
        <InputGroup size="md">
-         <Input
+         <input
          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
            type={show ? "text" : "password"}
            placeholder="Enter Password"
@@ -307,9 +309,9 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="consfirmpassword" isRequired>
-       <FormLabel>Confirm Password</FormLabel>
+     <span className="mb-2 text-sm md:text-md">Confirm Password</span>
        <InputGroup size="md">
-         <Input
+         <input
            className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
            type={show ? "text" : "password"}
            placeholder="Confirm password"
@@ -327,8 +329,8 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="panNumber">
-       <FormLabel>PanNumber</FormLabel>
-       <Input
+     <span className="mb-2 text-sm md:text-md">PanNUmber</span>
+       <input
          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="text"
          placeholder="Enter Your PanNUmber"
@@ -340,8 +342,8 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="contact">
-       <FormLabel>Conatct Number</FormLabel>
-       <Input
+     <span className="mb-2 text-sm md:text-md">Contact Number</span>
+       <input
          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="text"
          placeholder="Enter your COntact Number"
@@ -353,8 +355,8 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="age">
-       <FormLabel>Age</FormLabel>
-       <Input
+     <span className="mb-2 text-sm md:text-md">Age</span>
+       <input
          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="Number"
          placeholder="Enter Your Age"
@@ -364,7 +366,7 @@ const Signup = () => {
      </div>
 
 
-     <Button
+     <button
       //  colorScheme="blue"
        width="100%"
        style={{ marginTop: 15 }}
@@ -372,10 +374,11 @@ const Signup = () => {
        // isLoading={picLoading}
      >
        Sign Up
-     </Button>
-     </VStack>
+     </button>
+     {/* </VStack> */}
      </div>
      </div>
+     
      </>
  );
 };

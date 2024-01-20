@@ -1,12 +1,11 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ForgotPasswordPage from './Pages/ForgotPasswordPage';
+import SetPassword from './Pages/setPassword';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Navbar from './components/Navbar/Navbar';
 import Home from './views/Home/Home';
 import { ChakraProvider } from '@chakra-ui/react'
-import Dashboard from './views/Dashboard/Dashboard';
 // import { ToastContainer } from 'react-toast-notifications'
 function App() {
   return (
@@ -17,7 +16,9 @@ function App() {
         <Routes>
         
           <Route path='/' element={<Home/>}/>
-          {/* <Route path='/forgotpassword' Component={ForgotPasswordPage} /> */}
+          <Route path='/setpassword' Component={SetPassword} />
+          <Route path='/forgotpassword' Component={ForgotPassword} />
+          <Route path='/verifyotp' Component={Verifyotp} />
           <Route path='/login' Component={Login} />
           <Route path='/signup' Component={SignUp} />
           <Route path='/dashboard' Component={Dashboard} />
