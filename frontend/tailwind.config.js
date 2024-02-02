@@ -35,8 +35,5 @@ module.exports = {
       lg: "1200px",
       xl: "1700px",
     },
-  },
-  plugins: [
-    require('flowbite/plugin')
-  ],
+  }
 };
