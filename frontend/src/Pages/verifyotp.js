@@ -5,6 +5,8 @@ import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+
 
 const Verifyotp = () => {
   const sessiondata = JSON.parse(localStorage.getItem('userInfo'));
@@ -12,6 +14,7 @@ const Verifyotp = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [otp, setOtp] = useState();
 
@@ -42,7 +45,7 @@ const Verifyotp = () => {
         },
         config
       );
-      console.log(data);
+      // console.log(data);
       toast({
         title: "OTP Verified",
         status: "success",
@@ -51,6 +54,7 @@ const Verifyotp = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      navigate('/login')
     } catch (error) {
       console.log(error)
       toast({
