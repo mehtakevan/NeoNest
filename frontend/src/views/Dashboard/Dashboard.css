@@ -2,6 +2,8 @@
 
 .dashboard-container {
   display: flex;
+  /* background-image: conic-gradient( turquoise,paleturquoise,mediumaquamarine); */
+  /* color : (81, 210, 175)  ,rgb(207, 245, 235)   rgb(124, 255, 197 )  */
 }
 
 .dashboard-content {
@@ -13,6 +15,7 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
+  /* background-color:azure; */
 }
 
 .grey-container {
@@ -37,5 +40,6 @@
 
 .cards-container {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  background-color: black;
 }

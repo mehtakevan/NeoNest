@@ -22,7 +22,7 @@ const styles = {
     padding: '16px',
     margin: '16px',
     boxShadow: '1px 8px 16px rgba(0, 0, 0, 0.6)',
-    // background: 'rgb(105, 118, 219)'
+     background: 'white'
     // background: 'rgb(0, 7, 61)',
     // color: 'white'
   
