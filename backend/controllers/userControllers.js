@@ -167,7 +167,7 @@ const authUser = asyncHandler(async (req, res) => {
           res.status(500).send("Error sending email");
         }
       } catch (error) {
-        res.status(500).json({error});
+        res.status(500).json({msg : error});
       }
     }
   } else {

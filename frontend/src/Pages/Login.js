@@ -5,7 +5,8 @@ import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import { useHistory,useNavigate } from "react-router-dom";
+import robot from '../assets/robot.png'
 // import { ChatState } from "../../Context/ChatProvider";
 
 
@@ -88,6 +89,7 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
   // const history = useHistory();
   // const { setUser } = ChatState();
@@ -135,7 +137,8 @@ const Login = () => {
           duration: 5000,
           isClosable: true,
           position: "bottom",
-        }); 
+        });
+        navigate('/dashboard') 
       }
       // setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
@@ -144,7 +147,7 @@ const Login = () => {
     } catch (error) {
       toast({
         title: "Error Occured!",
-        description: error.response.data.message,
+        description: error.response.data.msg,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -155,45 +158,46 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-20 w-full h-screen flex flex-col md:flex-row items-start md:pl-10 lg:pl-20 xl:pl-40">
-         <div className="flex flex-col justify-center p-4 md:p-10 lg:p-14 xl:p-20 w-full md:w-1/2">
-           <span className="mb-3 text-2xl md:text-4xl font-bold">Welcome back</span>
-           <span className="font-light text-gray-400 mb-4 md:mb-8">
-             Welcome back! Please enter your details
-          </span>
-     {/* <div className="mt-40 "> */}
-    {/* <VStack spacing="10px"> */}
-    <div className="py-2 md:py-4">
-      <FormControl id="email" isRequired>
-        <span className="mb-2 text-sm md:text-md">Email</span>
-        <input
-          className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-          value={email}
-          type="email"
-          placeholder="Enter Your Email Address"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </FormControl>
+  <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-start bg-white pr-20 pt-20">
+  <div className="  h-screen flex-col md:flex-row justify-center items-start md:pl-10 lg:pl-20 xl:pl-40 bg-white pr-20 pt-20">
+  <div className=" rounded-lg shadow-2xl dark:border dark:bg-gray-900 dark:border-gray-700 bg-gradient-to-r from-teal-500 to-teal-200">
+    <div className="flex flex-col justify-center p-4 md:p-10 lg:p-14 xl:p-20 w-full">
+      <span className="mb-3 text-2xl md:text-4xl font-bold text-black">Welcome back</span>
+      <span className="font-light text-white mb-4 md:mb-8">
+        Welcome back! Please enter your details
+      </span>
+
+      <div className="py-2 md:py-4">
+        <FormControl id="email" isRequired>
+          <span className="mb-2 text-sm md:text-md text-white">Email</span>
+          <input
+            className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+            value={email}
+            type="email"
+            placeholder="Enter Your Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormControl>
       </div>
 
       <div className="py-2 md:py-4">
-      <FormControl id="password" isRequired>
-      <span className="mb-2 text-sm md:text-md">Password</span>
-        <InputGroup size="md">
-          <input
-            className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type={show ? "text" : "password"}
-            placeholder="Enter password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
+        <FormControl id="password" isRequired>
+          <span className="mb-2 text-sm md:text-md">Password</span>
+          <InputGroup size="md">
+            <input
+              className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type={show ? "text" : "password"}
+              placeholder="Enter password"
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? "Hide" : "Show"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
       </div>
 
       <button
@@ -203,14 +207,24 @@ const Login = () => {
         style={{ marginTop: 15 }}
         onClick={submitHandler}
         isLoading={loading}
-        className="w-full border border-gray-300 text-sm md:text-md p-2 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
+        className="w-full border bg-gray-300 border-gray-300 text-sm md:text-md p-2 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
       >
         Login
       </button>
-    {/* </VStack> */}
     </div>
     </div>
-    // </div>
+  </div>
+  <iframe
+    src="https://giphy.com/embed/kPJhdps6xaQoAPCYxC"
+    width="100%"
+    height="100%"
+    frameBorder="0"
+    className="w-full h-3/4 pt-20 hidden md:block object-cover rounded-r-2xl"
+    allowFullScreen
+  ></iframe>
+  {/* <img src={robot} alt="billing" className="w-[100%] h-[100%] relative z-[5]" /> */}
+</div>
+
   );
 };
 

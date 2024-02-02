@@ -4,7 +4,7 @@
 
 .home-container {
   height: 99vh; /* Set the height to 50% of the viewport height */
-  background-image: url('card3.png'); /* Replace with the path to your background image */
+  background-image: url('card.png'); /* Replace with the path to your background image */
   background-size: cover; /* Cover the container with the background image */
   background-position: center; /* Center the background image */
   display: flex;
@@ -46,5 +46,6 @@
   display: flex;
   justify-content: flex-start;
   margin-right: 990px;
-  margin-top: 350px;
+  margin-top: 480px;
+
 }
