@@ -1,45 +1,71 @@
 /* Dashboard.css */
 
 .dashboard-container {
-  display: flex;
-  /* background-image: conic-gradient( turquoise,paleturquoise,mediumaquamarine); */
-  /* color : (81, 210, 175)  ,rgb(207, 245, 235)   rgb(124, 255, 197 )  */
-}
-
-.dashboard-content {
-  flex: 1;
-  padding: 20px;
-}
-
-.cards-row {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  /* background-color:azure; */
-}
-
-.grey-container {
-  background-color: rgba(0, 0, 255, 0.5); 
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 450px;
-  width: 400px;
-}
-
-.card-icon {
-  color: #d34b4b; 
-}
-
-.dashboard-image {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.cards-container {
-  display: flex;
-  /* justify-content: space-around; */
-  background-color: black;
-}
+    display: flex;
+    /* background-image: radial-gradient(white
+   , rgb(123, 222, 222) 15%, rgb(5, 129, 108) 60%); */
+  /* 
+   radial-gradient(white
+   , teal 15%, rgb(4, 58, 58) 60%); */
+  }
+  
+  .dashboard-content {
+    flex: 1;
+    padding: 20px;
+  
+  }
+  
+  .cards-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .grey-container {
+    /* background-color: rgba(0, 0, 255, 0.5);  */
+    background-color: rgba(39, 228, 203, 0.97); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 450px;
+    width: 400px;
+  }
+  
+  .card-icon {
+    color: #d34b4b; 
+  }
+  
+  .dashboard-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .cards-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .transaction-history{
+    margin-left: 1040px;
+    margin-top: -420px;
+    box-shadow: 1px 8px 16px rgba(0, 255, 0, 0.2);
+   
+  }
+  
+  .transaction-history h2{
+    font-size: 30px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(24, 60, 60);
+  }
+  
+  .Birva{
+    margin-right: 300px;
+   
+    /* width: 900px;
+    border-radius: 9px ;
+    box-shadow : 1px 10px 20px rgba(0, 255, 0, 0.2); */
+  }

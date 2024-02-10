@@ -2,14 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Cardlayout = ({ title, amount, description, icon }) => {
+const Cardlayout = ({ title, amount, icon }) => {
   return (
     <div style={styles.card}>
       {icon}
      <div style={styles.content}> 
-     <h2>{title}</h2>
-      <p>{description}</p>
+     <h2 className='cardTitle'>{title}</h2>
+   <br/>
       <p>Amount: ${amount}</p>
+
       </div>
     </div>
   );
@@ -21,7 +22,9 @@ const styles = {
     borderRadius: '9px',
     padding: '16px',
     margin: '16px',
-    boxShadow: '1px 8px 16px rgba(0, 0, 0, 0.6)',
+    boxShadow: '1px 8px 16px rgba(0, 255, 0, 0.2)',
+    
+    // '1px 8px 16px rgba(0, 0, 0, 0.6)',
      background: 'white'
     // background: 'rgb(0, 7, 61)',
     // color: 'white'
@@ -30,8 +33,10 @@ const styles = {
   
   content: {
     fontSize: '20px',
-    fontFamily: 'D M Sans',
-    fontWeight: 'bold'
+    fontFamily: "Roboto",
+    fontWeight: '700',
+    fontStyle: 'normal' 
+    //  fontWeight: 'bold'
   
   }
   
