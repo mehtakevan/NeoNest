@@ -1,14 +1,49 @@
-
-import React from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
 
 const TransactionHistoryTable = () => {
-  
-  const transactions = [
-    { name: 'Birva', amount: 100, date: '2022-01-01' },
-    { name: 'Kevan', amount: 150, date: '2022-01-02' },
-    { name: 'Mansi', amount: 200, date: '2022-01-03' },
-    
-  ];
+  const[transactions,settransactions] = useState([]);
+  const item = JSON.parse(localStorage.getItem('userInfo'));
+
+  const getData = async(email)=>{
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const data  = await axios.post(
+        "http://localhost:5000/api/transaction/gettrandata",
+        { email },
+        config
+      );
+      console.log(data);
+      return data;
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    // const name = item.name;
+    const fetchData = async() =>{
+    const email = item.email;
+    console.log("Hey from Trans");
+   
+    console.log(email);
+    const data = await getData(email);
+
+    console.log("-------------------------------")
+    console.log(data);
+    settransactions(data.data.sender);
+    }
+    fetchData();
+  },[]);
+
+  useEffect(()=>{
+    console.log(transactions);
+  },[transactions]);
 
   return (
     <div style={styles.container}>
@@ -23,9 +58,9 @@ const TransactionHistoryTable = () => {
         <tbody>
           {transactions.map((transaction, index) => (
             <tr key={index}>
-              <td style={styles.td}>{transaction.name}</td>
+              <td style={styles.td}>{transaction._id}</td>
               <td style={styles.td}>${transaction.amount}</td>
-              <td style={styles.td}>{transaction.date}</td>
+              <td style={styles.td}>{transaction.note}</td>
             </tr>
           ))}
         </tbody>
