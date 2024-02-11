@@ -5,23 +5,24 @@ import { BiAnalyse, BiSearch } from "react-icons/bi";
 import { BiCog } from "react-icons/bi";
 import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
 import { BsCartCheck } from "react-icons/bs";
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useState,useEffect} from "react";
+import axios from "axios";
 import SidebarMenu from "./SidebarMenu";
 import './Sidebar.css';
 const routes = [
   {
-    path: "/",
+    path: "/dashboard",
     name: "Home",
     icon: <FaHome />,
   },
   {
-    path: "/users",
+    path: "/transfer",
     name: "Transfer funds",
     icon: <FaMoneyBillWave />,
   },
   {
-    path: "/messages",
+    path: "/transfer",
     name: "Get your loan",
     icon: <MdMessage />,
   },
@@ -89,6 +90,49 @@ const routes = [
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const[username,setusername] = useState('User');
+  const item = JSON.parse(localStorage.getItem('userInfo'));
+
+  const getData = async(email)=>{
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const data  = await axios.post(
+        "http://localhost:5000/api/account/getData",
+        { email },
+        config
+      );
+      console.log(data);
+      return data;
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    // const name = item.name;
+    const fetchData = async() =>{
+    const email = item.email;
+    console.log("Hey from dashboard");
+   
+    console.log(email);
+    const data = await getData(email);
+
+    console.log("-------------------------------")
+    console.log(data);
+    setusername(data.data.name);
+    }
+    fetchData();
+  },[]);
+
+  useEffect(()=>{
+    console.log(username);
+  },[setusername]);
+
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
     hidden: {
@@ -149,7 +193,7 @@ const Sidebar = () => {
                   exit="hidden"
                   className="logo"
                 >
-                  Hello User
+                  Hello {username}
                 </motion.h1>
               )}
             </AnimatePresence>

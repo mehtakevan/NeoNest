@@ -152,5 +152,28 @@ const transfer = asyncHandler(async(body)=>{
   }
 });
 
+  const getData = asyncHandler(async(req,res)=>{
+    const email = req.body.email;
+    console.log("Hey from getData");
+    console.log(email);
+    const user = await User.findOne({ email: email });
+    console.log(user);
+    const accnt = await Account.findOne({accountholder : user._id});
+    console.log(accnt);
 
-module.exports = {createAccount,sendMoney,getLoan};
+    if(accnt){
+      res.json({
+        totalamount : accnt.totalamount,
+        totalloan : accnt.loanamount,
+        totalfd : accnt.fixeddeposit,
+        totalstocks : 0,
+        name:user.userName
+      });
+    }else{
+      res.status(500).send("Error Occured");
+    }
+
+  });
+
+
+module.exports = {createAccount,sendMoney,getLoan,getData};
