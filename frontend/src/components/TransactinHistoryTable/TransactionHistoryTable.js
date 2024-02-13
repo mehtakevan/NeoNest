@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 const TransactionHistoryTable = () => {
   const[transactions,settransactions] = useState([]);
   const item = JSON.parse(localStorage.getItem('userInfo'));
+  const sender_id = item._id;
+  console.log(sender_id);
 
   const getData = async(email)=>{
     try {
@@ -28,15 +30,15 @@ const TransactionHistoryTable = () => {
   useEffect(() => {
     // const name = item.name;
     const fetchData = async() =>{
-    const email = item.email;
-    console.log("Hey from Trans");
-   
-    console.log(email);
-    const data = await getData(email);
+      const email = item.email;
+      console.log("Hey from Trans");
+    
+      console.log(email);
+      const data = await getData(email);
 
-    console.log("-------------------------------")
-    console.log(data);
-    settransactions(data.data.sender);
+      console.log("-------------------------------")
+      console.log(data);
+      settransactions(data.data.sender);
     }
     fetchData();
   },[]);
@@ -52,15 +54,15 @@ const TransactionHistoryTable = () => {
           <tr>
             <th style={styles.th}className="custom-th">Name</th>
             <th style={styles.th}className="custom-th">Amount</th>
-            <th style={styles.th}className="custom-th">Date</th>
+            <th style={styles.th}className="custom-th">Note</th>
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction, index) => (
+          {transactions.slice(0,7).map((transaction, index) => (
             <tr key={index}>
-              <td style={styles.td}>{transaction._id}</td>
-              <td style={styles.td}>${transaction.amount}</td>
-              <td style={styles.td}>{transaction.note}</td>
+              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.name}</td>
+              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.amount}</td>
+              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.note}</td>
             </tr>
           ))}
         </tbody>
@@ -97,7 +99,16 @@ const styles = {
     borderBottom: '1px solid #ddd',
     fontSize: '14px', 
     fontWeight: 'bold', 
-    color: 'white'
+    color: 'red',
+    // background : 'red'
+  },
+  td_r: {
+    padding: '12px', 
+    borderBottom: '1px solid #ddd',
+    fontSize: '14px', 
+    fontWeight: 'bold', 
+    color: 'green',
+    // background : 'green'
   },
 };
 

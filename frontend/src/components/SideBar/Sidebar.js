@@ -116,15 +116,15 @@ const Sidebar = () => {
   useEffect(() => {
     // const name = item.name;
     const fetchData = async() =>{
-    const email = item.email;
-    console.log("Hey from dashboard");
-   
-    console.log(email);
-    const data = await getData(email);
+      const email = item.email;
+      console.log("Hey from dashboard");
+    
+      console.log(email);
+      const data = await getData(email);
 
-    console.log("-------------------------------")
-    console.log(data);
-    setusername(data.data.name);
+      console.log("-------------------------------")
+      console.log(data);
+      setusername(data.data.name);
     }
     fetchData();
   },[]);

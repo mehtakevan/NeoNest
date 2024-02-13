@@ -25,6 +25,7 @@ function App() {
           <Route path='/signup' Component={SignUp} />
           <Route path='/dashboard' Component={Dashboard} />
           <Route path='/transfer' Component={Transfer} />
+          <Route path='/addfund' Component={Addfund} />
         </Routes>
       </BrowserRouter>
       </ChakraProvider>
