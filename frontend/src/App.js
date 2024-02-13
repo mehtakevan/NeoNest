@@ -5,7 +5,7 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Navbar from './components/Navbar/Navbar';
 import Home from './views/Home/Home';
-import Transfer from './Pages/transfer';
+import Transfer from './views/Transfer_funds/transfer';
 import { ChakraProvider } from '@chakra-ui/react';
 import Dashboard from './views/Dashboard/Dashboard';
 // import { ToastContainer } from 'react-toast-notifications'

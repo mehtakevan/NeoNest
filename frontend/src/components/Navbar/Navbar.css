@@ -12,15 +12,16 @@ body {
 /* Your existing Navbar.css styles can be included here */
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
- /* Add some transparency to the navbar background */
-  padding: 15px;
-  color: white;
-  position: fixed;
-  width: 100%;
-  top: 0;
+  
+    display: flex;
+    justify-content: center; /* Center the navbar horizontally */
+    align-items: center;
+    padding: 15px;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+ 
 }
 
 .logo {
