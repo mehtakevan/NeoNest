@@ -6,6 +6,7 @@ import SignUp from './Pages/SignUp';
 import Navbar from './components/Navbar/Navbar';
 import Home from './views/Home/Home';
 import Transfer from './Pages/transfer';
+import Addfund from './Pages/Addfund';
 import { ChakraProvider } from '@chakra-ui/react';
 import Dashboard from './views/Dashboard/Dashboard';
 // import { ToastContainer } from 'react-toast-notifications'
@@ -25,6 +26,7 @@ function App() {
           <Route path='/signup' Component={SignUp} />
           <Route path='/dashboard' Component={Dashboard} />
           <Route path='/transfer' Component={Transfer} />
+          <Route path='/addfund' Component={Addfund} />
         </Routes>
       </BrowserRouter>
       </ChakraProvider>

@@ -2,8 +2,14 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Account = require("../models/accountModel");
 const Transaction = require("../models/transactionModel");
+const dotenv = require("dotenv");
 const { json } = require("express");
 const { use } = require("../routes/userRoutes");
+dotenv.config({path : '../.env'})
+const Razorpay = require('razorpay');
+
+const razorpay_secret = process.env.RAZOR_PAY_SECRET;
+var instance = new Razorpay({ key_id: 'rzp_test_4jBEIDzdbYVvAZ', key_secret: razorpay_secret })
 
 const getTranData = asyncHandler(async(req,res)=>{
     try{
@@ -47,4 +53,59 @@ console.log(userdetails);
 }
 });
 
-module.exports = { getTranData};
+const createOrder = asyncHandler(async(req,res)=>{
+    try{
+        let amount = req.body.amount;
+        amount = amount*100;
+
+        var options = {
+            amount: amount,  // amount in the smallest currency unit
+            currency: "INR",
+            receipt: "order_rcptid_11"
+        };
+
+        const order = await instance.orders.create(options);
+
+        if(order){
+            console.log(order);
+            res.json({
+                order : order
+            });
+        }else{
+            res.status(500).send("Error");
+        }
+    }catch(error){
+        res.status(500).send(error);
+    }
+});
+
+const Addfund = asyncHandler(async(req,res)=>{
+    try{
+        let amount = req.body.amount;
+        amount = parseInt(amount);
+        console.log(typeof(amount));
+        const email = req.body.email;
+        const user = await User.findOne({email:email});
+
+        if(user){
+            const accnt = await Account.findOne({accountholder:user._id});
+            accnt.totalamount += amount;
+            await accnt.save();
+            console.log(accnt);
+            const tran = await Transaction.create({
+                receiver : user._id,
+                amount : amount,
+                note : "Funds Added",
+            });
+            console.log(tran);
+            res.status(201).send("transaction successful");
+        }else{
+            res.status(500).send("Error");
+        }
+
+    }catch(error){
+        res.status(500).send(error);
+    }
+})
+
+module.exports = { getTranData,createOrder,Addfund};
