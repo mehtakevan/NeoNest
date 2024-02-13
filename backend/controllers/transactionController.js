@@ -6,25 +6,45 @@ const { json } = require("express");
 const { use } = require("../routes/userRoutes");
 
 const getTranData = asyncHandler(async(req,res)=>{
+    try{
     const email = req.body.email;
     console.log("Hey from getTranData");
     console.log(email);
     const user = await User.findOne({ email: email });
     console.log(user);
 
-    const sender_transdetails = await Transaction.find({sender:user._id} || {receiver:user._id});
-    // const receiver_transdetail = await Transaction.find({receiver:user._id});
+    let transdetails = await Transaction.find({sender:user._id} || {receiver:user._id});
 
-    console.log("Sender's infor");
-    console.log(sender_transdetails);
+    let userdetails = [];
+    for (let element of transdetails) {
+        let e1 = element.toObject();
+        let userToFindId;
+        if (element.sender.toString() === user._id.toString()) {
+            userToFindId = element.receiver;
+        } else {
+            userToFindId = element.sender;
+        }
+
+        const user1 = await User.findOne({ _id: userToFindId });
+        if (user1) {
+            e1.name = user1.userName;
+        }
+        userdetails.push(e1);
+    }
+
+console.log("Sender's info");
+console.log(userdetails);
 
     // console.log("receiver's infor")
     // console.log(receiver_transdetail);
 
     res.json({
-        sender : sender_transdetails,
+        sender : userdetails,
         // receiver : receiver_transdetail,
     })
+}catch(error){
+    console.log(error);
+}
 });
 
 module.exports = { getTranData};
