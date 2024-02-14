@@ -22,7 +22,7 @@ const routes = [
     icon: <FaMoneyBillWave />,
   },
   {
-    path: "/transfer",
+    path: "/loan",
     name: "Get your loan",
     icon: <MdMessage />,
   },

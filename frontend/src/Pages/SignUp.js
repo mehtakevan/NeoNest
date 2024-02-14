@@ -140,33 +140,39 @@ const Signup = () => {
 
   return (
     <>
-       <div className="h-screen overflow-y-scroll ">
-       <div className="w-full h-screen flex items-center justify-center pt-6 bg-black">
-  
-    <div className=" rounded-lg shadow-2xl dark:border dark:bg-gray-900 dark:border-gray-700 bg-gradient-to-r from-gray-500 to-transparent p-6 md:p-10 lg:p-14 xl:p-20 w-full md:w-1/2">
-       <span className="text-white mb-3 text-2xl md:text-4xl font-bold ">Create an Account</span>
-           <span className="font-light justify-center text-gray-400 mb-4 md:mb-8">
+    
+    <div class="container flex h-full bg-gradient-to-r from-teal-500 to-teal-200">
+    <div className="flex ms-96 items-center justify-center pb-10">
+      <div className="text-center">
+    <span className="mb-3 text-2xl md:text-4xl font-bold">Create an Account</span>
+    <br></br>
+           <span className="font-light text-gray-400 mb-4 md:mb-8">
              Get started by creating your account
            </span>
-           
-   {/* <VStack spacing="5px"> */}
-   <div className="py-2 md:py-4">
-   <FormLabel>User Name</FormLabel>
+  
+           </div>
+          </div>
+        <div class = "grid grid-cols-2 gap-3 w-full">
+        <div class="w-full mx-2 flex justify-center">
+            
+            <div className="grid grid-rows-4">
+            <div className="py-2 md:py-4">
+     <span className="mb-2 text-sm md:text-md">User Name</span>
      <FormControl id="username" isRequired>
+       {/* <FormLabel>Name</FormLabel> */}
        <input
-         className="w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+         className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          placeholder="Enter Your Name"
          onChange={(e) => setusername(e.target.value)}
        />
      </FormControl>
      </div>
 
-
      <div className="py-2 md:py-4">
      <FormControl id="email" isRequired>
-     <FormLabel>Email Address</FormLabel>
+     <span className=" mb-2 text-sm md:text-md">Email Address</span>
        <input
-         className="w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+         className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="email"
          placeholder="Enter Your Email Address"
          onChange={(e) => setEmail(e.target.value)}
@@ -177,10 +183,10 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="password" isRequired>
-     <FormLabel>Password</FormLabel>
+     <span className="mb-2 text-sm md:text-md">Password</span>
        <InputGroup size="md">
          <input
-         className="mx-auto w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+         className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
            type={show ? "text" : "password"}
            placeholder="Enter Password"
            onChange={(e) => setPassword(e.target.value)}
@@ -194,13 +200,12 @@ const Signup = () => {
      </FormControl>
      </div>
 
-
      <div className="py-2 md:py-4">
      <FormControl id="consfirmpassword" isRequired>
-     <FormLabel>Confirm Password</FormLabel>
+     <span className="mb-2 text-sm md:text-md">Confirm Password</span>
        <InputGroup size="md">
          <input
-           className="mx-auto w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+           className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
            type={show ? "text" : "password"}
            placeholder="Confirm password"
            onChange={(e) => setConfirmpassword(e.target.value)}
@@ -213,13 +218,16 @@ const Signup = () => {
        </InputGroup>
      </FormControl>
      </div>
-
-
-     <div className="py-2 md:py-4">
+     </div>
+        </div>
+        
+        <div class="w-full mx-2 flex justify-center">
+             <div className="grid grid-rows-4">
+             <div className="py-2 md:py-4">
      <FormControl id="panNumber">
-     <FormLabel>Pan Number</FormLabel>
+     <span className="mb-2 text-sm md:text-md">PanNumber</span>
        <input
-         className="mx-auto w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+         className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="text"
          placeholder="Enter Your PanNumber"
          onChange={(e) => setPan(e.target.value)}
@@ -230,9 +238,9 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="contact">
-     <FormLabel>Contact Number</FormLabel>
+     <span className="mb-2 text-sm md:text-md">Contact Number</span>
        <input
-         className="w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+         className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="text"
          placeholder="Enter your Contact Number"
          onChange={(e) => setContact(e.target.value)}
@@ -243,32 +251,32 @@ const Signup = () => {
 
      <div className="py-2 md:py-4">
      <FormControl id="age">
-     <FormLabel>Age</FormLabel>
+     <span className="mb-2 text-sm md:text-md">Age</span>
        <input
-         className="w-1/2 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+         className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
          type="Number"
          placeholder="Enter Your Age"
          onChange={(e) => setAge(e.target.value)}
        />
      </FormControl>
      </div>
-
-
-     <button
-      //  colorScheme="blue"
+             </div>
+        </div>
+        </div>
+        <button
+        color="black"
+        colorScheme="blue"
        width="100%"
-       className="w-1/2 mt-10 mb-0 border bg-gray-300 border-gray-300 text-sm md:text-md p-2 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
+       style={{ marginTop: 15 }}
        onClick={submitHandler}
+       className="w-1/2 ms-80 justify-center border border-gray-300 text-sm md:text-md p-2 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
        // isLoading={picLoading}
      >
        Sign Up
      </button>
-     {/* </VStack> */}
-     </div>
-     </div>
-     </div>
-     {/* </div> */}
+    </div>
     
+
      </>
  );
 };
