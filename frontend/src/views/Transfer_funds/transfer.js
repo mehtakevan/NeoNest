@@ -1,51 +1,72 @@
 import React from 'react';
 import './transfer.css'; // Import your CSS file
-import { useState } from "react";
-
+import { Button } from "@chakra-ui/button";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
+import { VStack } from "@chakra-ui/layout";
+import { useToast } from "@chakra-ui/toast";
+import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { useState } from "react";
+import { useHistory, useNavigate } from "react-router-dom";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import Navbar from '../../components/Navbar/Navbar';
 const Transfer = () => {
   const [accountNumber, setAccountNumber] = useState('');
   const [amount, setAmount] = useState(0);
-  const [email, setEmail] = useState('');
-  const [sliderValue, setSliderValue] = useState(0);
-  const [isSliderActive, setIsSliderActive] = useState(false);
+  const [note, setNote] = useState('');
+  const toast = useToast();
+  const navigate = useNavigate();
+  const item = JSON.parse(localStorage.getItem("userInfo"));
 
-  const handleAccountNumberChange = (e) => {
-    setAccountNumber(e.target.value);
-  };
+  const handleTransfer = async() => {
+    const id = item._id;
+    console.log(accountNumber);
+    console.log(id);
+    console.log(amount);
 
-  const handleAmountChange = (e) => {
-    setAmount(e.target.value);
-  };
+    try{
+      console.log("In try block");
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleTransfer = () => {
+      const data  = await axios.post(
+        "http://localhost:5000/api/account/sendmoney",
+        { accountNumber,id,amount,note },
+        config
+      );
+      console.log(data);
+      if(data.data === "Transaction Completed"){
+        toast({
+          title: "Transaction Successful",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+      });
+      navigate('/dashboard')
+      }
+      console.log('Transfer initiated');
+    }
     // Handle the transfer logic
-    console.log('Transfer initiated');
-  };
-
-  const handleSliderChange = (e) => {
-    setSliderValue(e.target.value);
-    console.log("Slider change");
-  };
-
-  const handleSliderMouseDown = () => {
-    setIsSliderActive(true);
-    console.log("Slider Mouse Down");
-  };
-
-  const handleSliderMouseUp = () => {
-    setIsSliderActive(false);
-    console.log("Slider Mouse Up");
+    catch(error){
+      toast({
+        title: "Error Occurred. Please Try it after some time",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+    });
+      navigate('/dashboard')
+      console.log(error);
+    }
   };
 
   return (
@@ -68,7 +89,7 @@ const Transfer = () => {
                 placeholder="Enter account number"
                 className="border border-gray-300 rounded-md p-2 w-full"
                 value={accountNumber}
-                onChange={handleAccountNumberChange}
+                onChange={(e) => setAccountNumber(e.target.value)}
               />
             </div>
 
@@ -82,21 +103,21 @@ const Transfer = () => {
                 placeholder="Enter amount"
                 className="border border-gray-300 rounded-md p-2 w-full"
                 value={amount}
-                onChange={handleAmountChange}
+                onChange={(e) => setAmount(e.target.value)}
               />
             </div>
 
             <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-                Email
+              <label htmlFor="note" className="block text-gray-700 font-bold mb-2">
+                Note
               </label>
               <input
-                id="email"
-                type="email"
-                placeholder="Enter email"
+                id="note"
+                type="text"
+                placeholder="Enter a Note"
                 className="border border-gray-300 rounded-md p-2 w-full"
-                value={email}
-                onChange={handleEmailChange}
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
               />
             </div>
 
@@ -106,14 +127,14 @@ const Transfer = () => {
             </div>
             <br></br>
 
-            {!isSliderActive && (
+            
               <button
                 className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600"
                 onClick={handleTransfer}
               >
                 Transfer
               </button>
-            )}
+            
           </div>
 
           </div>

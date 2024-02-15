@@ -46,9 +46,7 @@ const createAccount = asyncHandler(async (email) => {
 
 const sendMoney = asyncHandler(async(req,res)=>{
   const data = req.body;
-  const user = req.session.user;
-  console.log(user);
-  data.sender = user._id;
+  data.sender = data.id;
   try{
   const response = await transfer(data);
   res.status(200).send("Transaction Completed");
