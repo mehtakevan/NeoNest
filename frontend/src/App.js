@@ -11,6 +11,7 @@ import Transfer from './views/Transfer_funds/transfer';
 import Addfund from './Pages/Addfund';
 import { ChakraProvider } from '@chakra-ui/react';
 import Dashboard from './views/Dashboard/Dashboard';
+import Addfund from './Pages/Addfund';
 import Loan from './Pages/getLoan';
 
 

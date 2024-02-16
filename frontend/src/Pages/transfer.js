@@ -18,39 +18,38 @@ const Transfer = () => {
   const [accountNumber, setAccountNumber] = useState('');
   const [amount, setAmount] = useState(0);
   const [email, setEmail] = useState('');
-  const [sliderValue, setSliderValue] = useState(0);
-  const [isSliderActive, setIsSliderActive] = useState(false);
+  const toast = useToast();
+  const navigate = useNavigate();
+  const item = JSON.parse(localStorage.getItem("userInfo"));
 
-  const handleAccountNumberChange = (e) => {
-    setAccountNumber(e.target.value);
-  };
+  const handleTransfer = async() => {
+    const accountNumber = accountNumber;
+    const id = item._id;
+    const amt = amount;
+    console.log(accountNumber);
+    console.log(id);
+    console.log(amt);
 
-  const handleAmountChange = (e) => {
-    setAmount(e.target.value);
-  };
+    try{
+      console.log("In try block");
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleTransfer = () => {
+      const data  = await axios.post(
+        "http://localhost:5000/api/account/sendmoney",
+        { accountNumber,id,amount },
+        config
+      );
+      console.log(data);
+      console.log('Transfer initiated');
+    }
     // Handle the transfer logic
-    console.log('Transfer initiated');
-  };
-
-  const handleSliderChange = (e) => {
-    setSliderValue(e.target.value);
-    console.log("Slider change");
-  };
-
-  const handleSliderMouseDown = () => {
-    setIsSliderActive(true);
-    console.log("Slider Mouse Down");
-  };
-
-  const handleSliderMouseUp = () => {
-    setIsSliderActive(false);
-    console.log("Slider Mouse Up");
+    catch(error){
+      console.log(error);
+    }
   };
   
 
@@ -74,7 +73,7 @@ const Transfer = () => {
               placeholder="Enter account number"
               className="border border-gray-300 rounded-md p-2 w-full"
               value={accountNumber}
-              onChange={handleAccountNumberChange}
+              onChange={(e) => setAccountNumber(e.target.value)}
             />
           </div>
 
@@ -88,7 +87,7 @@ const Transfer = () => {
               placeholder="Enter amount"
               className="border border-gray-300 rounded-md p-2 w-full"
               value={amount}
-              onChange={handleAmountChange}
+              onChange={(e) => setAmount(e.target.value)}
             />
           </div>
 
@@ -102,7 +101,7 @@ const Transfer = () => {
               placeholder="Enter email"
               className="border border-gray-300 rounded-md p-2 w-full"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="relative overflow-hidden">
@@ -116,14 +115,12 @@ const Transfer = () => {
           <Slider />
             </div>
             <br></br>
-          {!isSliderActive && (
             <button 
               className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600"
               onClick={handleTransfer}
             >
               Transfer
             </button>
-          )}
           
         </div>
 
