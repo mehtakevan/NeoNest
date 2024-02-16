@@ -29,11 +29,11 @@ const Home = () => {
               </Link>
               <Link to="/signup" className="rounded-button signup">
                 SignUp
-              </Link>x
+              </Link>
             </div>
           </div>
         </div>
-        <Slide />
+        {/* <Slide /> */}
       </div>
       
                           {/* </div> */}

@@ -78,7 +78,7 @@ const styles = {
     overflow: 'hidden', 
     
    
-    background: 'rgb(0, 7, 61)',
+    background: ' rgb(0, 55, 61)',
     
   },
   table: {
@@ -99,7 +99,7 @@ const styles = {
     borderBottom: '1px solid #ddd',
     fontSize: '14px', 
     fontWeight: 'bold', 
-    color: 'red',
+    color: 'white',
     // background : 'red'
   },
   td_r: {

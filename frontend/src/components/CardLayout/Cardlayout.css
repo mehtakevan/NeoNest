@@ -19,7 +19,11 @@
 .cardTitle {
 
 font-size: 34px;
+color:  rgb(6, 80, 88); 
 
+}
+p{
+  color:  rgb(6, 80, 88); 
 }
 
 .card {

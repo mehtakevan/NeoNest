@@ -4,7 +4,7 @@
 
 .home-container {
   height: 99vh; /* Set the height to 50% of the viewport height */
-  background-image: url('card.png'); /* Replace with the path to your background image */
+  background-image: url('card4.png'); /* Replace with the path to your background image */
   background-size: cover; /* Cover the container with the background image */
   background-position: center; /* Center the background image */
   display: flex;
@@ -16,7 +16,7 @@
 .content {
   text-align: center;
 }
-.rounded-button {
+/* .rounded-button {
   border: none;
   outline: none;
   padding: 15px 30px;
@@ -25,27 +25,50 @@
   margin-right: 10px;
 }
 
-/* Additional styling for specific buttons if needed */
+
 .rounded-button.login {
   background-color: #3498db;
   color: #fff;
-}
+} */
 
-.rounded-button.signup {
+/* .rounded-button.signup {
   background-color: #2ecc71;
   color: #fff;
 }
 .rounded-button:hover {
-  border: 2px solid #f5dddd; /* Add border color and size on hover */
+  border: 2px solid #f5dddd; 
   background-color: rgb(244, 183, 103);
 }
 
 
-/* Updated styles for button container to shift buttons to the left */
+
 .button-container {
   display: flex;
   justify-content: flex-start;
   margin-right: 990px;
   margin-top: 480px;
 
+} */
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -64px; /* Adjust as needed */
+}
+
+.rounded-button {
+  display: inline-block;
+  padding: 15px 30px; /* Increase padding to increase button size */
+  border: 2px solid rgb(4, 106, 146);
+  border-radius: 25px;
+  color: rgb(4, 106, 146);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin: 0 10px; /* Add margin to create spacing */
+}
+
+.rounded-button:hover {
+  background-color: rgb(4, 107, 175);
+  color: white;
 }
