@@ -58,7 +58,7 @@ const TransactionHistoryTable = () => {
           </tr>
         </thead>
         <tbody>
-          {transactions.slice(0,7).map((transaction, index) => (
+          {transactions.slice(0,5).map((transaction, index) => (
             <tr key={index}>
               <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.name}</td>
               <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.amount}</td>

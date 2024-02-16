@@ -32,26 +32,26 @@ const routes = [
     icon: <FaChartLine />,
   },
   {
-    path: "/file-manager",
-    name: "File Manager",
+    path: "/addfund",
+    name: "Add Funds",
     icon: <AiTwotoneFileExclamation />,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
+    // subRoutes: [
+    //   {
+    //     path: "/settings/profile",
+    //     name: "Profile ",
+    //     icon: <FaUser />,
+    //   },
+    //   {
+    //     path: "/settings/2fa",
+    //     name: "2FA",
+    //     icon: <FaLock />,
+    //   },
+    //   {
+    //     path: "/settings/billing",
+    //     name: "Billing",
+    //     icon: <FaMoneyBill />,
+    //   },
+    // ],
   },
   {
     path: "/order",

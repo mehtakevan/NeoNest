@@ -58,9 +58,10 @@ const sendMoney = asyncHandler(async(req,res)=>{
 
 const getLoan = asyncHandler(async(req,res)=>{
   const user = req.session.user;
-  const amount = req.body.amount;
-
-  const accnt = await Account.findOne({accountholder : user._id});
+  let amount = req.body.amount;
+  let id = req.body.id;
+  amount = parseInt(amount);
+  const accnt = await Account.findOne({accountholder : id});
   console.log(accnt);
   if(accnt){
     if(accnt.totalamount >= amount/10){
@@ -79,7 +80,9 @@ const getLoan = asyncHandler(async(req,res)=>{
 })
 
 const transfer = asyncHandler(async(body)=>{
-  const {email, accountNumber,amount,note,sender} = body;
+  let {email, accountNumber,amount,note,sender} = body;
+
+  amount = parseInt(amount);
 
   if(!email && !accountNumber){
     throw new Error ("Please enter email or accountNumber");
