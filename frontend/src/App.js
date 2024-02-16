@@ -8,6 +8,7 @@ import ForgotPassword from './Pages/forgotpassword'
 import Verifyotp from './Pages/verifyotp'
 import Home from './views/Home/Home';
 import Transfer from './views/Transfer_funds/transfer';
+import Addfund from './Pages/Addfund';
 import { ChakraProvider } from '@chakra-ui/react';
 import Dashboard from './views/Dashboard/Dashboard';
 import Addfund from './Pages/Addfund';
