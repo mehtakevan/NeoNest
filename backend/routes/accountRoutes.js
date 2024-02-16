@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.route("/getData").post(getData);
 router.post("/sendmoney",sendMoney);
+router.post("/getloan",getLoan);
 
 
 module.exports = router;
