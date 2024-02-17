@@ -6,6 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+import './AddFund.css';
 
 const Addfund = () => {
   const [amount, setAmount] = useState(0);
@@ -121,47 +123,61 @@ const Addfund = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-start bg-white pr-20 pt-20">
-      <div className="  h-screen flex-col md:flex-row justify-center items-start md:pl-10 lg:pl-20 xl:pl-40 bg-white pr-20 pt-20">
-        <div className=" rounded-lg shadow-2xl dark:border dark:bg-gray-900 dark:border-gray-700 bg-gradient-to-r from-teal-500 to-teal-200">
-          <div className="flex flex-col justify-center p-4 md:p-10 lg:p-14 xl:p-20 w-full">
-            <span className="mb-3 text-2xl md:text-4xl font-bold text-black">
-              Add To Account
-            </span>
-            <span className="font-light text-white mb-4 md:mb-8">
-              Add Funds to your account
-            </span>
+    <>
+    <Navbar />
+    <div className="addfund-container"> {/* Apply transfer-container class */}
+  
+      <div className="form-container"> 
+      <div className="flex justify-center items-center">
+          <div className="w-1/2 bg-gray-100 p-8">
+            <h1 className="text-2xl mb-4">Add Your Funds</h1>
+          <span className="font-light text-black mb-4 md:mb-8">
+            Add To Account
+          </span>
 
-            <div className="py-2 md:py-4">
-              <FormControl id="email" isRequired>
-                <span className="mb-2 text-sm md:text-md text-white">
-                  Amount
-                </span>
-                <input
-                  className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-                  value={amount}
-                  type="Number"
-                  placeholder="Enter the Amount to Add"
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </FormControl>
+          <div className="mb-4">
+              <label htmlFor="accountNumber" className="block text-gray-700 font-bold mb-2">
+                Amount
+              </label>
+              <input
+                id="email"
+                type="Number"
+                placeholder="Enter amount to add"
+                className="border border-gray-300 rounded-md p-2 w-full"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
             </div>
+            </div>
+         
 
-            <button
-              color="black"
-              colorScheme="blue"
-              width="100%"
-              style={{ marginTop: 15 }}
-              onClick={submitHandler}
-              className="w-full border bg-gray-300 border-gray-300 text-sm md:text-md p-2 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
-            >
-              Let's Credit
-            </button>
-          </div>
+            
         </div>
+        {/* <button
+                className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600"
+                onClick={submitHandler}
+              >
+                Let's Credit
+              </button> */}
+              <button
+  className="text-white py-2 px-4 rounded-md mt-4"
+  style={{ 
+    backgroundColor: 'rgb(6, 80, 88)',
+    transition: 'background-color 0.3s', // Optional: add transition for smooth hover effect
+  }}
+  onMouseEnter={(e) => e.target.style.backgroundColor = 'rgb(6, 80, 88)'} // Set background color on hover
+  onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(6, 80, 88)'} // Reset background color on hover out
+  onClick={submitHandler}
+>
+  Let's Credit
+</button>
       </div>
+     
     </div>
-  );
+ </>
+);
 };
+
+
 
 export default Addfund;

@@ -54,8 +54,8 @@ const routes = [
     // ],
   },
   {
-    path: "/order",
-    name: "Order",
+    path: "/fixedDeposit",
+    name: "Your Fixed Deposit",
     icon: <BsCartCheck />,
   },
   {

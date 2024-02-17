@@ -13,7 +13,7 @@ import Dashboard from './views/Dashboard/Dashboard';
 import Addfund from './Pages/Addfund';
 import Loan from './Pages/getLoan';
 import NewSignup from './Pages/NewSignup';
-
+import FixedDeposit from './views/FixedDeposit/FixedDeposit';
 
 // import { ToastContainer } from 'react-toast-notifications'
 function App() {
@@ -35,6 +35,7 @@ function App() {
           <Route path='/loan' Component={Loan} />
           <Route path='/addfund' Component={Addfund} />
           <Route path='/newsignup' Component={NewSignup} />
+          <Route path='/fixedDeposit' Component={FixedDeposit} />
         </Routes>
       </BrowserRouter>
       </ChakraProvider>

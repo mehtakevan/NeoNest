@@ -1,0 +1,57 @@
+.fdpage {
+  background-image: url('fd1.png'); 
+  background-size: cover; 
+  background-position: center; 
+  height: 100vh; 
+}
+
+
+.fixed-deposit-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 190px; 
+  padding-top: 150px;
+}
+
+.fixed-deposit-form {
+  width: 450px; 
+  background-color: #fffcfc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-deposit-form h1 {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.fixed-deposit-form div {
+  margin-bottom: 10px;
+}
+
+.fixed-deposit-form label {
+  display: block;
+  font-weight: bold;
+}
+
+.fixed-deposit-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.fixed-deposit-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(6, 80, 88); 
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.fixed-deposit-form button:hover {
+  background-color:  rgb(6, 80, 88); ;
+}
