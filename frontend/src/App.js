@@ -12,6 +12,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Dashboard from './views/Dashboard/Dashboard';
 import Addfund from './Pages/Addfund';
 import Loan from './Pages/getLoan';
+import NewSignup from './Pages/NewSignup';
 
 
 // import { ToastContainer } from 'react-toast-notifications'
@@ -33,6 +34,7 @@ function App() {
           <Route path='/transfer' Component={Transfer} />
           <Route path='/loan' Component={Loan} />
           <Route path='/addfund' Component={Addfund} />
+          <Route path='/newsignup' Component={NewSignup} />
         </Routes>
       </BrowserRouter>
       </ChakraProvider>

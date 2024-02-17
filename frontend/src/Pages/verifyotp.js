@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const Verifyotp = () => {
-  const sessiondata = JSON.parse(localStorage.getItem('userInfo'));
-  const email = sessiondata.data.email;
+  const sessiondata = JSON.parse(localStorage.getItem('aadharInfo'));
+  const email = sessiondata.data.aadhar.email;
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -54,7 +54,7 @@ const Verifyotp = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate('/login')
+      navigate('/signup')
     } catch (error) {
       console.log(error)
       toast({

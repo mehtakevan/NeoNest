@@ -4,9 +4,11 @@ const {
   authUser,
   verifyotp,
   forgotpassword,
-  setpassword
+  setpassword,
+  addAadhar,
+  aadharSignUp,
+  getUserData
 } = require("../controllers/userControllers");
-const{sendMoney, getLoan} = require("../controllers/accountController");
 const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -17,8 +19,8 @@ router.post("/login", authUser);
 router.post("/otp", verifyotp);
 router.post("/forgotpassword",forgotpassword);
 router.post("/setpassword",setpassword);
-router.post("/sendMoney",sendMoney);
-router.post("/loan",getLoan)
-
+router.post("/addaadhar",addAadhar);
+router.post("/aadharsignup",aadharSignUp);
+router.post("/getuserdata",getUserData);
 
 module.exports = router;
