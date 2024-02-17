@@ -2,15 +2,15 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
+import toast from 'react-hot-toast'
 
 const ForgotPassword = () => {
 
     const [show, setShow] = useState(false);
     const handleClick = () => setShow(!show);
-    const toast = useToast();
+    
     
     const [email, setEmail] = useState();
     // const [confirmpassword, setConfirmpassword] = useState();
@@ -18,25 +18,25 @@ const ForgotPassword = () => {
 
     const submitHandler = async () => {
         if (!email) {
-            toast({
-              title: "Please enter your email.",
-              status: "warning",
-              duration: 5000,
-              isClosable: true,
-              position: "bottom",
-            });
+          toast.error(
+            "Please enter your email",
+            {style : {
+              background:"red",
+              color:"white"
+            }}
+          );
             return;
           }
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(!emailPattern.test(email)){
-            toast({
-              title: "Please enter correct email",
-              status: "warning",
-              duration: 5000,
-              isClosable: true,
-              position: "bottom",
-            });
+          toast.warning(
+            "Please enter your correct email.",
+            {style : {
+              background:"orange",
+              color:"white"
+            }}
+          );
             return;
         }
         console.log(email)
@@ -54,24 +54,31 @@ const ForgotPassword = () => {
               config
             );
             console.log(data);
-            toast({
-              title: "Email Sent",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-              position: "bottom",
-            });
+            toast.success(
+              "Email sent",
+              {style : {
+                background:"green",
+                color:"white"
+              }}
+            );
             localStorage.setItem("userInfo", JSON.stringify(data));
           } catch (error) {
             console.log(error)
-            toast({
-              title: "Error Occured!",
-              //description: error.response.data.message,
-              status: "error",
-              duration: 5000,
-              isClosable: true,
-              position: "bottom",
-            });
+            toast.error(
+              "Error Occurred.",
+              {style : {
+                background:"red",
+                color:"white"
+              }}
+            );
+            // toast({
+            //   title: "Error Occured!",
+            //   //description: error.response.data.message,
+            //   status: "error",
+            //   duration: 5000,
+            //   isClosable: true,
+            //   position: "bottom",
+            // });
           }
     }
   

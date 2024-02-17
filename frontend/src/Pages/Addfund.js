@@ -4,29 +4,27 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
-import { useToast } from "@chakra-ui/react";
 import { useHistory, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import './AddFund.css';
+import toast from 'react-hot-toast';
 
 const Addfund = () => {
   const [amount, setAmount] = useState(0);
-  const toast = useToast();
   const navigate = useNavigate();
 
   const item = JSON.parse(localStorage.getItem('userInfo'));
   const email = item.email;
 
-
   const submitHandler = async () => {
     if (!amount) {
-      toast({
-        title: "Please Fill the amount to credit",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.error(
+        "Please fill the amount to credit.",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
       return;
     }
 
@@ -63,23 +61,23 @@ const Addfund = () => {
             )
             console.log(res);
             if(res.data === "transaction successful"){
-                toast({
-                    title: "Funds Added to your Account",
-                    status: "success",
-                    duration: 5000,
-                    isClosable: true,
-                    position: "bottom",
-                });
+              toast.success(
+                "Funds added to your account",
+                {style : {
+                  background:"green",
+                  color:"white"
+                }}
+              );
                 navigate('/dashboard')
             }
             else{
-                toast({
-                    title: "Might take some time to credit the balance",
-                    status: "success",
-                    duration: 5000,
-                    isClosable: true,
-                    position: "bottom",
-                });
+              toast.success(
+                "Might take some time to credit the balance.",
+                {style : {
+                  background:"green",
+                  color:"white"
+                }}
+              );
                 navigate('/dashboard')
             }
         },
@@ -104,13 +102,13 @@ const Addfund = () => {
             // alert(response.error.reason);
             // alert(response.error.metadata.order_id);
             // alert(response.error.metadata.payment_id);
-            toast({
-                title: "Some error occured Please try again after sometime",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-                position: "bottom",
-            });
+            toast.error(
+              "Some error Occurred. Please try again in some time",
+              {style : {
+                background:"red",
+                color:"white"
+              }}
+            );
             navigate('/dashboard')
     });
 

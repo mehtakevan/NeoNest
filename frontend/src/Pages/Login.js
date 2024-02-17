@@ -4,14 +4,12 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
-import { useToast } from "@chakra-ui/react";
 import { useHistory,useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const toast = useToast();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
@@ -22,13 +20,13 @@ const Login = () => {
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password) {
-      toast({
-        title: "Please Fill all the Feilds",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.warning(
+        "Please fill all the fields",
+        {style : {
+          background:"orange",
+          color:"white"
+        }}
+      );
       setLoading(false);
       return;
     }
@@ -47,24 +45,24 @@ const Login = () => {
       );
       // console.log(data.msg);
       if(data.msg == "Mail sent for verification"){
-        toast({
-          title: "Mail sent",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+        toast.success(
+          "Mail sent.",
+          {style : {
+            background:"green",
+            color:"white"
+          }}
+        );
         localStorage.setItem("userInfo", JSON.stringify({data:{email}}));
         navigate('/verifyotp');
       }
       else{
-        toast({
-          title: "Login Successful",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+        toast.success(
+          "Login successful",
+          {style : {
+            background:"green",
+            color:"white"
+          }}
+        );
       // setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data)); 
       navigate('/dashboard')
@@ -73,14 +71,21 @@ const Login = () => {
       // history.push("/chats");
     } catch (error) {
       console.log(error);
-      toast({
-        title: "Error Occured!",
-        description: error.response.data.msg,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.error(
+        "Error occured",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
+      // toast({
+      //   title: "Error Occured!",
+      //   description: error.response.data.msg,
+      //   status: "error",
+      //   duration: 5000,
+      //   isClosable: true,
+      //   position: "bottom",
+      // });
       setLoading(false);
     }
   };

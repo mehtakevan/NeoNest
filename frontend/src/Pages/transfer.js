@@ -2,7 +2,6 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import Slider from '../components/Slider/slider';
 import Sidebar from '../components/SideBar/Sidebar';
@@ -18,7 +17,7 @@ const Transfer = () => {
   const [accountNumber, setAccountNumber] = useState('');
   const [amount, setAmount] = useState(0);
   const [email, setEmail] = useState('');
-  const toast = useToast();
+  
   const navigate = useNavigate();
   const item = JSON.parse(localStorage.getItem("userInfo"));
 

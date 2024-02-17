@@ -1,4 +1,4 @@
-import { useToast } from "@chakra-ui/toast";
+// import { useToast }  from "@chakra-ui/toast";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar/Navbar";
 import "./getLoan.css";
 import {withStyles} from '@material-ui/core/styles'
 import  Slider  from "@material-ui/core/Slider";
+import toast from 'react-hot-toast';
 
 const Prettoslider = withStyles ({
   
@@ -23,7 +24,7 @@ const Loan = () => {
   const [totalint, setTotalint] = useState();
   const maxValue = 10000;
   const maxPeriod = 20;
-  const toast = useToast();
+  //const toast = useToast();
   const navigate = useNavigate();
   const item = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -63,25 +64,25 @@ const Loan = () => {
       );
       console.log(data);
       if (data.data === "Loan Approved") {
-        toast({
-          title: "Transaction Successful",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+        toast.success(
+          "Transaction Successful",
+          {style : {
+            background:"green",
+            color:"white"
+          }}
+        );
         navigate("/dashboard");
       }
       console.log("Transfer initiated");
     } catch (error) {
       // Handle the transfer logic
-      toast({
-        title: "Error Occurred. Please Try it after some time",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.error(
+        "Error Occurred. Please Try it after some time",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
       navigate("/dashboard");
       console.log(error);
     }

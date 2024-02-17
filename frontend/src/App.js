@@ -14,6 +14,7 @@ import Addfund from './Pages/Addfund';
 import Loan from './Pages/getLoan';
 import NewSignup from './Pages/NewSignup';
 import FixedDeposit from './views/FixedDeposit/FixedDeposit';
+import {Toaster} from 'react-hot-toast'
 
 // import { ToastContainer } from 'react-toast-notifications'
 function App() {
@@ -39,6 +40,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       </ChakraProvider>
+      <Toaster/>
     </div>
   );
 }

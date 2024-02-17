@@ -4,7 +4,6 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -15,11 +14,11 @@ import { useState } from "react";
 import { useHistory, useNavigate } from "react-router-dom";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import Navbar from '../../components/Navbar/Navbar';
+import toast from 'react-hot-toast';
 const Transfer = () => {
   const [accountNumber, setAccountNumber] = useState('');
   const [amount, setAmount] = useState(0);
   const [note, setNote] = useState('');
-  const toast = useToast();
   const navigate = useNavigate();
   const item = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -44,26 +43,26 @@ const Transfer = () => {
       );
       console.log(data);
       if(data.data === "Transaction Completed"){
-        toast({
-          title: "Transaction Successful",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-      });
+        toast.success(
+          "Transfer Successful",
+          {style : {
+            background:"green",
+            color:"white"
+          }}
+        );
       navigate('/dashboard')
       }
       console.log('Transfer initiated');
     }
     // Handle the transfer logic
     catch(error){
-      toast({
-        title: "Error Occurred. Please Try it after some time",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-    });
+      toast.error(
+        "Error occurred. Please try it after some time.",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
       navigate('/dashboard')
       console.log(error);
     }

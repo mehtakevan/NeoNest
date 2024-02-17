@@ -4,29 +4,27 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
-import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 
 const Verifyotp = () => {
   const sessiondata = JSON.parse(localStorage.getItem('aadharInfo'));
   const email = sessiondata.data.aadhar.email;
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const toast = useToast();
   const navigate = useNavigate();
 
   const [otp, setOtp] = useState();
 
   const submitHandler = async () => {
     if (!otp) {
-      toast({
-        title: "Please enter otp",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.warning(
+        "Please enter OTP.",
+        {style : {
+          background:"orange",
+          color:"white"
+        }}
+      );
       return;
     }
     console.log(otp)
@@ -46,25 +44,32 @@ const Verifyotp = () => {
         config
       );
       // console.log(data);
-      toast({
-        title: "OTP Verified",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.success(
+        "OTP Verified.",
+        {style : {
+          background:"green",
+          color:"white"
+        }}
+      );
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate('/signup')
     } catch (error) {
       console.log(error)
-      toast({
-        title: "Error Occured!",
-        //description: error.response.data.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.error(
+        "Error occurred",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
+      // toast({
+      //   title: "Error Occured!",
+      //   //description: error.response.data.message,
+      //   status: "error",
+      //   duration: 5000,
+      //   isClosable: true,
+      //   position: "bottom",
+      // });
     }
   }
 

@@ -4,13 +4,12 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState,useEffect } from "react";
 import axios from "axios";
-import { useToast } from "@chakra-ui/react";
+import toast from "react-hot-toast";
 
 const SetPassword = () => {
   // console.log("HELIIEEEEEEE ");
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const toast = useToast();
 
   const [confirmpassword, setConfirmpassword] = useState();
   const [pass, setPass] = useState();
@@ -29,24 +28,24 @@ const SetPassword = () => {
   const changePassword = async () => {
     console.log("HEELLLLLOOO  ");
     if (!pass || !confirmpassword) {
-        toast({
-          title: "Please fill all the fields.",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+      toast.warning(
+        "Please fill all the fields.",
+        {style : {
+          background:"orange",
+          color:"white"
+        }}
+      );
         return;
       }
 
     if (pass !== confirmpassword) {
-        toast({
-          title: "Passwords Do Not Match",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+      toast.error(
+        "Passwords do not match.",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
         return;
     }
     console.log(pass)
@@ -68,24 +67,31 @@ const SetPassword = () => {
           config
         );
         console.log(data);
-        toast({
-          title: "Password Changed Successfully",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+        toast.success(
+          "Password changed successfully.",
+          {style : {
+            background:"green",
+            color:"white"
+          }}
+        );
         localStorage.setItem("userInfo", JSON.stringify(data));
       } catch (error) {
         console.log(error)
-        toast({
-          title: "Error Occured!",
-          //description: error.response.data.message,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+        toast.error(
+          "Error occurred",
+          {style : {
+            background:"red",
+            color:"white"
+          }}
+        );
+        // toast({
+        //   title: "Error Occured!",
+        //   //description: error.response.data.message,
+        //   status: "error",
+        //   duration: 5000,
+        //   isClosable: true,
+        //   position: "bottom",
+        // });
       }
 }
 

@@ -3,15 +3,14 @@ import { Box, CloseButton } from "@chakra-ui/react";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 // import { useHistory } from "react-router";
 
 const NewSignup = () => {
   const navigate = useNavigate();
-  const toast = useToast();
   // const history = useHistory();
 
   const [aadhar, setAadhar] = useState("");
@@ -20,24 +19,24 @@ const NewSignup = () => {
     console.log("Helllo   ");
     console.log("aadhar ", aadhar);
     if (!aadhar) {
-      toast({
-        title: "Please Fill The Aadhar Number",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.warning(
+        "Please fill the AADHAR Number.",
+        {style : {
+          background:"orange",
+          color:"white"
+        }}
+      );
       return;
     }
     const aadhaarPattern = /^\d{12}$/;
     if (!aadhaarPattern.test(aadhar)) {
-      toast({
-        title: "Please enter correct Aadhar Number",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.warning(
+        "Please enter correct AADHAR Number",
+        {style : {
+          background:"orange",
+          color:"white"
+        }}
+      );
       return;
     }
 
@@ -56,25 +55,32 @@ const NewSignup = () => {
         config
       );
       console.log(data);
-      toast({
-        title: "Registration Successful",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.success(
+        "Registration successful",
+        {style : {
+          background:"green",
+          color:"white"
+        }}
+      );
       localStorage.setItem("aadharInfo", JSON.stringify(data));
       navigate("/verifyotp");
     } catch (error) {
       console.log(error);
-      toast({
-        title: "Error Occured!",
-        //description: error.response.data.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      toast.error(
+        "Error occured",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
+      // toast({
+      //   title: "Error Occured!",
+      //   //description: error.response.data.message,
+      //   status: "error",
+      //   duration: 5000,
+      //   isClosable: true,
+      //   position: "bottom",
+      // });
     }
   };
 
