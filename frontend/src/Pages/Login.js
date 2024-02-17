@@ -20,7 +20,7 @@ const Login = () => {
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password) {
-      toast.warning(
+      toast.error(
         "Please fill all the fields",
         {style : {
           background:"orange",

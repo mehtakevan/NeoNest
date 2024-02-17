@@ -19,7 +19,7 @@ const NewSignup = () => {
     console.log("Helllo   ");
     console.log("aadhar ", aadhar);
     if (!aadhar) {
-      toast.warning(
+      toast.error(
         "Please fill the AADHAR Number.",
         {style : {
           background:"orange",
@@ -30,7 +30,7 @@ const NewSignup = () => {
     }
     const aadhaarPattern = /^\d{12}$/;
     if (!aadhaarPattern.test(aadhar)) {
-      toast.warning(
+      toast.error(
         "Please enter correct AADHAR Number",
         {style : {
           background:"orange",

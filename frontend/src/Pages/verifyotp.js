@@ -18,7 +18,7 @@ const Verifyotp = () => {
 
   const submitHandler = async () => {
     if (!otp) {
-      toast.warning(
+      toast.error(
         "Please enter OTP.",
         {style : {
           background:"orange",

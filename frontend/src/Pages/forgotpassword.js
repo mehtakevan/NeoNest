@@ -30,7 +30,7 @@ const ForgotPassword = () => {
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(!emailPattern.test(email)){
-          toast.warning(
+          toast.error(
             "Please enter your correct email.",
             {style : {
               background:"orange",

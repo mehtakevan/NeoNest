@@ -28,7 +28,7 @@ const SetPassword = () => {
   const changePassword = async () => {
     console.log("HEELLLLLOOO  ");
     if (!pass || !confirmpassword) {
-      toast.warning(
+      toast.error(
         "Please fill all the fields.",
         {style : {
           background:"orange",
