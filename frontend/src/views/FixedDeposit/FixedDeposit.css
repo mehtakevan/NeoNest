@@ -1,57 +1,29 @@
-.fdpage {
-  background-image: url('fd1.png'); 
-  background-size: cover; 
-  background-position: center; 
-  height: 100vh; 
-}
+/* getLoan.css */
 
-
-.fixed-deposit-container {
+.loan-container {
+  background-image: url('fd1.png'); /* Replace with your image path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Ensure the background covers the entire viewport */
   display: flex;
-  justify-content: flex-end;
-  padding-right: 190px; 
-  padding-top: 150px;
+  justify-content: center;
+  align-items: center;
 }
 
-.fixed-deposit-form {
-  width: 450px; 
-  background-color: #fffcfc;
+.form-container {
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background for form */
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  box-sizing: border-box;
+  width: 80%; /* Adjust the width of the form container as needed */
+  margin-left: 420px;
+  background: none;
 }
-
-.fixed-deposit-form h1 {
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.fixed-deposit-form div {
-  margin-bottom: 10px;
-}
-
-.fixed-deposit-form label {
-  display: block;
-  font-weight: bold;
-}
-
-.fixed-deposit-form input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.fixed-deposit-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: rgb(6, 80, 88); 
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.fixed-deposit-form button:hover {
-  background-color:  rgb(6, 80, 88); ;
+.loan-container h1 {
+   font-size: '20px';
+  font-Family: 'Roboto';
+  font-weight: '700';
+  font-style: 'normal';  /* Adjust the font size as needed */
+  font-family: 'Arial', sans-serif; /* Change the font family as needed */
+  /* Add any additional styles you want */
 }
