@@ -6,6 +6,7 @@ import { useHistory, useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/toast";
 import {withStyles} from '@material-ui/core/styles'
 import  Slider  from "@material-ui/core/Slider";
+import toast from 'react-hot-toast';
 
 const Prettoslider = withStyles ({
   
@@ -22,6 +23,8 @@ const FixedDeposit = () => {
   const [period, setPeriod] = useState(0);
   const maxValue = 10000;
   const maxPeriod = 20;
+  const item = JSON.parse(localStorage.getItem("userInfo"));
+  const navigate = useNavigate();
 
   const calculateMaturityAmount = () => {
     const interestRate = 0.1; 
@@ -47,8 +50,51 @@ const FixedDeposit = () => {
     {value: 10000, label: "₹10000"}
   ]
    
-  const submitHandler = () =>{
-      
+  const submitHandler = async() =>{
+    const id = item._id;
+    console.log(id);
+    console.log(amount);
+
+    try {
+      console.log("In try block");
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const data = await axios.post(
+        "http://localhost:5000/api/account/getfixeddeposit",
+        {  id, amount },
+        config
+      );
+      console.log(data);
+      if (data.data === "Fixed Deposit Created") {
+        toast.success(
+          "Fixed Deposit Created",
+          {style : {
+            background:"green",
+            color:"white"
+          }}
+        );
+        navigate("/dashboard");
+      }
+      console.log("Transfer initiated");
+    } catch (error) {
+      // Handle the transfer logic
+      toast.error(
+        "Error Occurred. Please Try it after some time",
+        {style : {
+          background:"red",
+          color:"white"
+        }}
+      );
+      navigate("/dashboard");
+      console.log(error);
+    }
+
+    // Handle the transfer logic
+    console.log("Fixed Dedposit");
   }
 
   return (
