@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start; /* Vertically align to the top */
+  padding: 20px;
+  background-color: #fff;
+  height: 0vh;
+  width: 100%;
+  margin-top: 80px;
+  /* margin-right: 10px;
+  margin-left: 10px;
+*/
+
+}
+
+.left-image {
+  flex: none;
+  margin-right: 10px; /* Adjust as needed */
+  width: 50%; /* Adjust as needed */
+  max-width: 600px; /* Set maximum width */
+  height: 500px;
+  background-image: url('2.png');
+  background-size: cover;
+  
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Add space between search container and table */
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width:400px;
+  margin-top:50px;
+}
+
+.search-icon {
+  margin-left: 10px;
+  margin-top: 50px;
+  color: #fff;
+  cursor: pointer;
+  background-color: rgb(15, 154, 159);
+  font-size: 40px;
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+.stock-table th,
+.stock-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.stock-table th {
+  background-color: rgb(15, 154, 159);
+}
+
+.stock-table td button {
+  margin-right: 5px;
+  background-color: rgb(15, 109, 109);
+  border-radius: 4px;
+  height:30px;
+  width: 32px; 
+  color: white;
+
+}
+
+.search-results {
+  margin-top: 20px;
+}
+
+.search-results h2 {
+  margin-bottom: 10px;
+}
+
+
+
+.buy-stock,
+.sell-stock {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buy-stock button {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.sell-stock {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.buy-stock:hover,
+.sell-stock:hover {
+  opacity: 0.8;
+}
+
+.search-results {
+  margin-top: 20px;
+}
+
+.search-results h2 {
+  margin-bottom: 10px;
+}
+
+.search-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.buy-sell-buttons button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

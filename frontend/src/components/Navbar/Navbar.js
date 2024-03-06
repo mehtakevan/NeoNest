@@ -16,6 +16,8 @@ const Navbar = () => {
           <li><a href="/">Home</a></li>
           <li><a href="/dashboard">Dashboard</a></li>
           <li><a href="/transfer">Transfer</a></li>
+          <li><a href="/addfund">Add fund</a></li>
+          <li><a href="/fixedDeposit">FixedDeposit</a></li>
           <li><a href="#">Stocks</a></li>
         </ul>
       </nav>

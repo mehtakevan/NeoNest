@@ -15,6 +15,7 @@ import Loan from './Pages/getLoan';
 import NewSignup from './Pages/NewSignup';
 import FixedDeposit from './views/FixedDeposit/FixedDeposit';
 import {Toaster} from 'react-hot-toast'
+import Portfolio from './views/Stock_Portfolio/Portfolio';
 
 // import { ToastContainer } from 'react-toast-notifications'
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path='/addfund' Component={Addfund} />
           <Route path='/newsignup' Component={NewSignup} />
           <Route path='/fixedDeposit' Component={FixedDeposit} />
+          <Route path='/portfolio' Component={Portfolio} />
         </Routes>
       </BrowserRouter>
       </ChakraProvider>
