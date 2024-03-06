@@ -37,7 +37,9 @@ const getTranData = asyncHandler(async(req,res)=>{
         }
         userdetails.push(e1);
     }
-
+    userdetails.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+    });    
 console.log("Sender's info");
 console.log(userdetails);
 

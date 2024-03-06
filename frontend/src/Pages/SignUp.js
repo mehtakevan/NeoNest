@@ -327,7 +327,6 @@ const Signup = () => {
               style={{ marginTop: 15 }}
               onClick={submitHandler}
               className="w-1/2 p-0 ms-24 justify-center border border-gray-300 text-sm md:text-md rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
-              // isLoading={picLoading}
             >
               Sign Up
             </button>

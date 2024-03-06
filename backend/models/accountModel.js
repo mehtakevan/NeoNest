@@ -6,6 +6,7 @@ const accountSchema = mongoose.Schema({
     totalamount: {type: Number , min: 0 , default: 0},
     fixeddeposit: {type: Number, min: 0 , default: 0},
     loanamount: {type: Number, min: 0 , default: 0},
+    stockamount : {type : mongoose.Schema.Types.Decimal128, default : 0.00}
 });
 const Account = mongoose.model("Account", accountSchema);
 module.exports = Account;

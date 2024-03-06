@@ -154,7 +154,7 @@ const FixedDeposit = () => {
                   placeholder="Enter amount"
                   className="border border-gray-300 rounded-md p-2 w-full"
                   value={amount}
-                  onChange={(e) => setMaturityAmount(e.target.value)}
+                  onChange={(e) => setAmount(e.target.value)}
                 />
                 </div>
                 </div>

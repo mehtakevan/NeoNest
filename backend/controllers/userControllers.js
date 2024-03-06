@@ -131,6 +131,7 @@ const registerUser = asyncHandler(async (req, res) => {
       //   });
       const found = await createAccount(email);
       console.log(found);
+      res.status(201).send("Account Created");
       }
      catch (error) {
       console.error("Error creating email:", error);

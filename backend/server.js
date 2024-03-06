@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const accountRoutes = require("./routes/accountRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
+const portfolioRoutes = require("./routes/portfolioRoutes");
 const session = require("express-session");
 const cors = require('cors')
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/user", userRoutes);
 app.use("/api/account",accountRoutes);
 app.use("/api/transaction",transactionRoutes);
+app.use("/api/portfolio",portfolioRoutes);
 
 // Error Handling middlewares
 app.use(notFound);

@@ -27,7 +27,7 @@ const Home = () => {
               <Link to="/login" className="rounded-button login">
                 Log In
               </Link>
-              <Link to="/signup" className="rounded-button signup">
+              <Link to="/newsignup" className="rounded-button signup">
                 SignUp
               </Link>
             </div>
