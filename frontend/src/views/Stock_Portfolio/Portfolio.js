@@ -4,22 +4,22 @@ import './Portfolio.css';
 import { FaSearch } from 'react-icons/fa';
 
 const Portfolio = () => {
-  const [searchResult, setSearchResult] = useState([]); // State to store search results
-  const [searchQuery, setSearchQuery] = useState(''); // State to store search query
+  const [searchResult, setSearchResult] = useState([]); 
+  const [searchQuery, setSearchQuery] = useState(''); 
 
   const stockNames = ["Apple", "Amazon", "Microsoft", "Google", "Facebook"]; // Example array of stock names
 
   const handleInputChange = (e) => {
     const query = e.target.value;
-    setSearchQuery(query); // Update the search query state as the user types
+    setSearchQuery(query); 
 
-    // Filter the stock names array based on the search query
+    
     const results = stockNames.filter(stock => stock.toLowerCase().includes(query.toLowerCase()));
-    setSearchResult(results); // Set the search results in state
+    setSearchResult(results); 
   };
 
   const handleBuySell = (stockName, action) => {
-    // Implement buy/sell logic here
+    
     console.log(`Performing ${action} for ${stockName}`);
   };
 
@@ -35,11 +35,11 @@ const Portfolio = () => {
               placeholder="Search..."
               className="search-input"
               value={searchQuery}
-              onChange={handleInputChange} // Call handleInputChange function on input change
+              onChange={handleInputChange} 
             />
             <FaSearch className="search-icon" />
           </div>
-          {searchQuery && ( // Only display search results if there's a search query
+          {searchQuery && (
             <div className="search-results">
               <h2>Search Results</h2>
               <div className="search-results-container">
@@ -79,7 +79,7 @@ const Portfolio = () => {
                 <td><button className="buy-button">Buy</button></td>
                 <td><button className="sell-button">Sell</button></td>
               </tr>
-              {/* Add more rows as needed */}
+              
             </tbody>
           </table>
         </div>
