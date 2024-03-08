@@ -1,5 +1,9 @@
-.predict-container {
-    background-image: url('predict1.png'); /* Replace with your image path */
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .predict-container {
+    background-image: url('predict4.png'); /* Replace with your image path */
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh; /* Ensure the background covers the entire viewport */
@@ -9,48 +13,29 @@
     align-items: center;
 }
 
-.left-side {
-    flex: 1; /* Take up remaining space */
-    display: flex;
-    flex-direction: column; /* Change to column layout */
-    align-items: flex-start; /* Align items to the start */
-    padding-left: 20px; /* Add padding to the left */
-}
 
-.search-container {
+  
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    margin-left: 80px;
+  }
+  
+  .search-container {
     display: flex;
     align-items: center;
-    margin-bottom: 250px; /* Add space between search container and table */
-    margin-left: 20px;
-}
-
-.search-input {
+    margin-bottom: 10px; /* Add space between search container and table */
+    margin-left: 50px;
+  }
+  
+  .search-input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 400px;
-    margin-top: 50px;
-}
-
-.search-icon {
-    margin-left: 10px;
-    margin-top: 50px;
-    color: #fff;
-    cursor: pointer;
-    background-color: rgb(15, 154, 159);
-    font-size: 40px;
-}
-
-
-.search-results {
-  margin-top: 10px;
-}
-
-.search-results h2 {
-  margin-bottom: 10px;
-}
-
-.predict-button {
+    width:400px;
+    margin-top:50px;
+  }
+  .predict-button {
     padding: 10px 20px; /* Adjust padding as needed */
     background-color: rgb(15, 154, 159); /* Set background color */
     color: #fff; /* Set text color */
@@ -63,3 +48,85 @@
 .predict-button:hover {
     background-color: #0c8b8e; /* Change background color on hover */
 }
+
+  
+  .search-icon {
+    margin-left: 10px;
+    margin-top: 50px;
+    color: #fff;
+    cursor: pointer;
+    background-color: rgb(15, 154, 159);
+    font-size: 40px;
+  }
+  
+  .stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+  }
+  
+  .stock-table th,
+  .stock-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .stock-table th {
+    background-color: rgb(15, 154, 159);
+  }
+  
+  .stock-table td button {
+    margin-right: 5px;
+    background-color: rgb(15, 109, 109);
+    border-radius: 4px;
+    height:30px;
+    width: 32px; 
+    color: white;
+  
+  }
+  
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  .search-results h2 {
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  .buy-stock,
+  .sell-stock {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  .search-results h2 {
+    margin-bottom: 10px;
+  }
+  
+  .search-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .buy-sell-buttons button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
