@@ -5,6 +5,7 @@ import { BiAnalyse, BiSearch } from "react-icons/bi";
 import { BiCog } from "react-icons/bi";
 import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
 import { BsCartCheck } from "react-icons/bs";
+import { GrTransaction } from "react-icons/gr";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState,useEffect} from "react";
 import axios from "axios";
@@ -20,6 +21,11 @@ const routes = [
     path: "/transfer",
     name: "Transfer funds",
     icon: <FaMoneyBillWave />,
+  },
+  {
+    path: "/transactionhistory",
+    name : "Your Transaction History",
+    icon: <GrTransaction />
   },
   {
     path: "/loan",

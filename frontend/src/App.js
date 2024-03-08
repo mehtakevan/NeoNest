@@ -16,6 +16,7 @@ import NewSignup from './Pages/NewSignup';
 import FixedDeposit from './views/FixedDeposit/FixedDeposit';
 import {Toaster} from 'react-hot-toast'
 import Portfolio from './views/Stock_Portfolio/Portfolio';
+import FullTransactionTable from './components/FullTransactionTable';
 
 // import { ToastContainer } from 'react-toast-notifications'
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='/newsignup' Component={NewSignup} />
           <Route path='/fixedDeposit' Component={FixedDeposit} />
           <Route path='/portfolio' Component={Portfolio} />
+          <Route path='/transactionhistory' Component={FullTransactionTable}/>
         </Routes>
       </BrowserRouter>
       </ChakraProvider>
