@@ -16,6 +16,7 @@ const Navbar = () => {
           <li><a href="/">Home</a></li>
           <li><a href="/dashboard">Dashboard</a></li>
           <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/predict">Predict Price</a></li>
           {/* <li><a href="#">FixedDeposit</a></li>
           <li><a href="#">Add Funds</a></li> */}
           <li><a href="#">Stocks</a></li>
