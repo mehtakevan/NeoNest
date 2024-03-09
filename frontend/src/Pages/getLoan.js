@@ -123,7 +123,7 @@ const Loan = () => {
   return (
     <>
       <Navbar />
-      <div className="loan-container">
+      <div className="loan-container2">
         {" "}
         {/* Apply transfer-container class */}
         <div className="form-container">
