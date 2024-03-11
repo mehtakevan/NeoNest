@@ -69,6 +69,19 @@ nav a:hover,
   padding: 15px 20px; /* Increase padding */
   border-radius: 35px; /* Increase border-radius */
 }
+.logout-button {
+  background-color: rgb(15, 154, 159);; /* Red background color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding around text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.logout-button:hover {
+  background-color: rgb(15, 154, 159); /* Darker red on hover */
+}
+
 
 @media only screen and (max-width: 600px) {
   /* styles for mobile devices */

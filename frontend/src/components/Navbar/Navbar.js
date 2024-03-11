@@ -8,9 +8,17 @@ const Navbar = () => {
     setShowNavLinks(!showNavLinks);
   };
 
+  const handleLogout = () => {
+
+      // Clear any session-related data or tokens
+      localStorage.removeItem('authToken');
+      // Redirect to the login page
+      window.location.href = '/';
+    
+  };
+
   return (
     <header className="navbar">
-      
       <nav className={showNavLinks ? 'nav-links active' : 'nav-links'}>
         <ul>
           <li><a href="/">Home</a></li>
@@ -18,7 +26,7 @@ const Navbar = () => {
           <li><a href="/transfer">Transfer</a></li>
           <li><a href="/addfund">Add fund</a></li>
           <li><a href="/fixedDeposit">FixedDeposit</a></li>
-          <li><a href="#">Stocks</a></li>
+          <li><a href="#"></a></li>
         </ul>
       </nav>
       <div className="hamburger-menu" onClick={toggleNavLinks}>
@@ -26,7 +34,11 @@ const Navbar = () => {
         <div className={showNavLinks ? 'line line2 active' : 'line line2'}></div>
         <div className={showNavLinks ? 'line line3 active' : 'line line3'}></div>
       </div>
-     
+      
+      {/* Logout Button/Link */}
+      <div className="logout-button" onClick={handleLogout}>
+        Logout
+      </div>
     </header>
   );
 };

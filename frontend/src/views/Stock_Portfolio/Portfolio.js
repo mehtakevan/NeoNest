@@ -2161,8 +2161,11 @@ const Portfolio = () => {
                 {searchResult.map((stock, index) => (
                   <div key={index} className="search-result-item">
                     <span>{stock.name}</span>
-                    <div className="buy-sell-buttons">
+                    {/* <div className="buy-sell-buttons">
                       <button onClick={() => handleDetailQuote(stock, 'buy')} className="buy-button">DetailQuote</button>
+                    </div> */}
+                     <div className="predict-button-container">
+                     <button onClick={() => handleDetailQuote(stock, 'buy')} className="predict-button">View Details</button>
                     </div>
                   </div>
                 ))}
@@ -2187,9 +2190,11 @@ const Portfolio = () => {
             placeholder="Enter quantity to buy/sell"
             onChange={(e) => setQuantity(e.target.value)}
           />
-          <button onClick={() => handleBuySell(selectedStock, 'buy')} className="buy-button">Buy</button><span>                 </span>
-          <button onClick={() => handleBuySell(selectedStock, 'sell')} className="sell-button">sell</button><br></br>
-              <button onClick={closeDialog}>Close</button>
+<button onClick={() => handleBuySell(selectedStock, 'buy')} className="buy-button">Buy</button>
+<button onClick={() => handleBuySell(selectedStock, 'sell')} className="sell-button">Sell</button>
+
+          <button onClick={closeDialog} className="close-button">Close</button>
+
             </div>
           </div>
           )}

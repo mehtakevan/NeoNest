@@ -6,6 +6,17 @@ const Navbar = () => {
 
   const toggleNavLinks = () => {
     setShowNavLinks(!showNavLinks);
+
+  };
+
+  const handleLogout = () => {
+
+    // Clear any session-related data or tokens
+    localStorage.removeItem('authToken');
+    // Redirect to the login page
+    window.location.href = '/';
+  
+
   };
 
   return (
@@ -19,7 +30,7 @@ const Navbar = () => {
           <li><a href="/predict">Predict Price</a></li>
           {/* <li><a href="#">FixedDeposit</a></li>
           <li><a href="#">Add Funds</a></li> */}
-          <li><a href="#">Stocks</a></li>
+         
 
         </ul>
       </nav>
@@ -28,7 +39,10 @@ const Navbar = () => {
         <div className={showNavLinks ? 'line line2 active' : 'line line2'}></div>
         <div className={showNavLinks ? 'line line3 active' : 'line line3'}></div>
       </div>
-     
+           {/* Logout Button/Link */}
+           <div className="logout-button" onClick={handleLogout}>
+        Logout
+      </div>
     </header>
   );
 };
