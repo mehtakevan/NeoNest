@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
-import Sidebar from "../components/SideBar/Sidebar";
+import Navbar from "./Navbar/Navbar";
+// import {bgimage} from "../assets/bgimage.jpg";
 // import {Button} from '';
 
 
@@ -13,8 +14,9 @@ const FullTransactionTable = () => {
   const startIndex = (page - 1) * transactionsPerPage;
   const endIndex = startIndex + transactionsPerPage;
 
+  const results = transactions.filter(t => t.note !== "Loan Approved" && t.note !== "Fixed Deposit");
   // Slice the transactions to display only the ones for the current page
-  const displayedTransactions = transactions.slice(startIndex, endIndex);
+  const displayedTransactions = results.slice(startIndex, endIndex);
   
   const nextPage = () => {
     if (page < totalPages) {
@@ -73,19 +75,23 @@ const FullTransactionTable = () => {
 
   return (
     <>
-    <div className="grid grid-cols-12">
+    {/* <div className="grid grid-cols-12"> */}
       {/* <div className="w-1/2"> */}
-        <Sidebar/>
+        {/* <Sidebar/> */}
       {/* </div> */}
-      <div className="col-span-11">
+      
+      <div className="m-5 mt-30 p-2">
+      <Navbar/>
+      </div>
+      {/* <div className="col-span-11"> */}
         <div className="text-4xl text-gray-700 text-bold p-10">Your Transaction History</div>
-        <div className="w-1/2 p-6 ms-52">
+        {/* <div className="w-1/2 p-6 ms-72"> */}
           
           {/* <SearchBar value={this.state.value}
     onChange={(newValue) => this.setState({ value: newValue })}
     onRequestSearch={() => onSearch(this.state.value)}/> */}
-        </div>
-        <div className="w-3/4 ms-40">
+        {/* </div> */}
+        <div className="w-3/4 ms-52">
     <div style={styles.container}>
       <table style={styles.table}>
         <thead>
@@ -99,7 +105,7 @@ const FullTransactionTable = () => {
           {displayedTransactions.map((transaction, index) => (
             <tr key={index} className="hover:bg-gray-600">
               <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.name}</td>
-              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.amount}</td>
+              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}> ₹{transaction.amount}.00</td>
               <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.note}</td>
             </tr>
           ))}
@@ -107,13 +113,13 @@ const FullTransactionTable = () => {
       </table>
     </div>
     </div>
-        <div>
+        <div className="ml-8">
         <button disabled={page === 1} onClick={prevPage} className="w-1/10  border bg-gray-300 border-gray-300 text-sm md:text-md p-2 m-10 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white">Previous</button>
         <span>Page {page} of {totalPages}</span>
         <button disabled={page === totalPages} onClick={nextPage} className="w-1/10 border bg-gray-300 border-gray-300 text-sm md:text-md p-2 m-10 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white">Next</button>
       </div>
-      </div>
-    </div>
+      {/* </div> */}
+    
     </>
   );
 };

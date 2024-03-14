@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser, FaMoneyBillWave, FaChartLine } from "react-icons/fa";
+import { TbPigMoney } from "react-icons/tb";
+import { LiaMoneyCheckSolid } from "react-icons/lia";
 import { MdMessage } from "react-icons/md";
 import { BiAnalyse, BiSearch } from "react-icons/bi";
 import { BiCog } from "react-icons/bi";
@@ -23,17 +25,35 @@ const routes = [
     icon: <FaMoneyBillWave />,
   },
   {
-    path: "/transactionhistory",
-    name : "Your Transaction History",
-    icon: <GrTransaction />
+    path: "/history",
+    name : "History",
+    icon: <GrTransaction />,
+    exact:true,
+    subRoutes:[
+      {
+        path: "/history/transaction",
+        name: "Transaction ",
+        icon: <FaMoneyBill/>,
+      },
+      {
+        path: "/history/loan",
+        name: "Loan ",
+        icon: <TbPigMoney />,
+      },
+      {
+        path: "/history/fixeddeposit",
+        name: "Fixed Deposit ",
+        icon: <LiaMoneyCheckSolid />,
+      }
+    ]
   },
   {
     path: "/loan",
     name: "Get your loan",
-    icon: <MdMessage />,
+    icon: <TbPigMoney />,
   },
   {
-    path: "/analytics",
+    path: "/portfolio",
     name: "Stocks",
     icon: <FaChartLine />,
   },

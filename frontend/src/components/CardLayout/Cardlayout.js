@@ -9,7 +9,7 @@ const Cardlayout = ({ title, amount, icon }) => {
      <div style={styles.content}> 
      <h2 className='cardTitle'>{title}</h2>
    <br/>
-      <p>Amount: {amount}₹</p>
+      <p>Amount: ₹{amount}</p>
 
       </div>
     </div>

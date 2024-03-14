@@ -1,12 +1,37 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
+import Navbar from "./Navbar/Navbar";
 
-const TransactionHistoryTable = () => {
-  const[transactions,settransactions] = useState([]);
+const LoanTable = () => {
+
+  const[loan,setLoan] = useState([]);
+  const [page, setPage] = useState(1);
+  const loansPerPage = 5;
+
+  const totalPages = Math.ceil(loan.length / loansPerPage);
+  const startIndex = (page - 1) * loansPerPage;
+  const endIndex = startIndex + loansPerPage;
+
+  const results = loan.filter(l => l.note === "Loan Approved");
+  console.log("Result Loan : ")
+  console.log(results)
+  // Slice the transactions to display only the ones for the current page
+  const displayedLoans = results.slice(startIndex, endIndex);
+  
+  const nextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+  
+  const prevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
   const item = JSON.parse(localStorage.getItem('userInfo'));
   const sender_id = item._id;
   console.log(sender_id);
-  const results = transactions.filter(t => t.note !== "Loan Approved" && t.note !== "Fixed Deposit");
 
   const getData = async(email)=>{
     try {
@@ -39,7 +64,7 @@ const TransactionHistoryTable = () => {
 
       console.log("-------------------------------")
       console.log(data);
-      settransactions(data.data.sender);
+      setLoan(data.data.sender);
     }
     fetchData();
   },[]);
@@ -49,26 +74,40 @@ const TransactionHistoryTable = () => {
   // },[transactions]);
 
   return (
+    <>  
+      <div className="m-5 mt-30 p-2">
+      <Navbar/>
+      </div>
+        <div className="text-4xl text-gray-700 text-bold p-10">Your Loan History</div>
+        <div className="w-3/4 ms-52">
     <div style={styles.container}>
       <table style={styles.table}>
         <thead>
           <tr>
             <th style={styles.th}className="custom-th">Name</th>
             <th style={styles.th}className="custom-th">Amount</th>
-            <th style={styles.th}className="custom-th">Note</th>
+            {/* <th style={styles.th}className="custom-th">Note</th> */}
           </tr>
         </thead>
         <tbody>
-          {results.slice(0,5).map((transaction, index) => (
-            <tr key={index}>
-              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.name}</td>
-              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>₹{transaction.amount}.00</td>
-              <td style={transaction.sender === sender_id ?styles.td : styles.td_r}>{transaction.note}</td>
+          {displayedLoans.map((loan, index) => (
+            <tr key={index} className="hover:bg-gray-600">
+              <td style={loan.sender === sender_id ?styles.td : styles.td_r}>{loan.name}</td>
+              <td style={loan.sender === sender_id ?styles.td : styles.td_r}> ₹{loan.amount}.00</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    </div>
+        <div className="ml-8">
+        <button disabled={page === 1} onClick={prevPage} className="w-1/10  border bg-gray-300 border-gray-300 text-sm md:text-md p-2 m-10 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white">Previous</button>
+        <span>Page {page} of {totalPages}</span>
+        <button disabled={page === totalPages} onClick={nextPage} className="w-1/10 border bg-gray-300 border-gray-300 text-sm md:text-md p-2 m-10 rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white">Next</button>
+      </div>
+      {/* </div> */}
+    
+    </>
   );
 };
 
@@ -113,4 +152,4 @@ const styles = {
   },
 };
 
-export default TransactionHistoryTable;
+export default LoanTable

@@ -71,6 +71,17 @@ const getLoan = asyncHandler(async (req, res) => {
         .status(500)
         .send(`Insufficient minimum balance needed for ${amount} loan`);
     }
+    const tran = await Transaction.create({
+      sender: id,
+      receiver: id,
+      amount: amount,
+      note: "Loan Approved",
+    });
+    if (tran) {
+      return tran;
+    } else {
+      throw new Error("Transaction failed");
+    }
   } else {
     res.status(500).send("Account Not found");
   }
@@ -95,20 +106,21 @@ const transfer = asyncHandler(async (body) => {
           sen_accnt.totalamount -= amount;
           await rec_accnt.save();
           await sen_accnt.save();
+          const tran = await Transaction.create({
+            sender: sender,
+            receiver: id,
+            amount: amount,
+            note: note,
+          });
+          if (tran) {
+            return tran;
+          } else {
+            throw new Error("Transaction failed");
+          }
         } else {
           throw new Error("Insufficient balance");
         }
-        const tran = await Transaction.create({
-          sender: sender,
-          receiver: id,
-          amount: amount,
-          note: note,
-        });
-        if (tran) {
-          return tran;
-        } else {
-          throw new Error("Transaction failed");
-        }
+        
       } else {
         throw new Error("User Not found");
       }
@@ -177,7 +189,18 @@ const getFixedDeposit = asyncHandler(async (req, res) => {
       accnt.totalamount -= amount;
       accnt.fixeddeposit += amount;
       await accnt.save();
-      res.status(200).send("Fixed Deposit Created");
+      res.status(200).send("Fixed Deposit Created")
+      const tran = await Transaction.create({
+        sender: id,
+        receiver: id,
+        amount: amount,
+        note: "Fixed Deposit",
+      });
+      if (tran) {
+        return tran;
+      } else {
+        throw new Error("Transaction failed");
+      }
     } else {
       res
         .status(500)
