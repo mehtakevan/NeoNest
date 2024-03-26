@@ -2061,26 +2061,19 @@ const buyStock = asyncHandler(async (req, res) => {
   const { id, name, quantity, bp } = req.body;
 
   try {
-    console.log(id)
-    console.log(name)
-    console.log(typeof(quantity))
-    console.log(typeof(bp))
     const accnt = await Account.findOne({ accountholder: id });
     const exist = await Portfolio.findOne({ portfolioHolder: id, stockName: name });
 
-    // bp = await mongoose.Types.Decimal128.fromString(bp.toString())
 
     console.log(accnt);
     console.log(exist);
 
     if (exist) {
-      console.log(accnt.totalamount);
-      console.log(typeof(exist.quantity))
-      console.log(exist.quantity + quantity)
       if (accnt.totalamount >= quantity * bp) {
-        exist.quantity = parseInt(exist.quantity) + parseInt(quantity);
-        exist.buyPrice = ((parseFloat(exist.buyPrice) + parseFloat(bp)) / (parseInt(exist.quantity) + parseInt(quantity)));
-        console.log((exist.buyPrice));
+        const temp = parseFloat(exist.quantity * exist.buyPrice) + parseFloat(quantity * bp);
+        const temp2 = parseFloat(exist.quantity) + parseFloat(quantity)
+        exist.buyPrice = (temp/temp2);
+        exist.quantity = temp2
         accnt.totalamount -= quantity * bp;
         accnt.stockamount += quantity * bp;
         await exist.save();
@@ -2119,17 +2112,14 @@ const sellStock = asyncHandler(async (req, res) => {
   const { id, name, quantity, sp } = req.body;
 
   try {
-    console.log(id)
-    console.log(name)
-    console.log(quantity)
-    console.log(sp)
     const accnt = await Account.findOne({ accountholder: id });
     const exist = await Portfolio.findOne({ portfolioHolder: id, stockName: name });
 
     if (exist) {
       exist.quantity -= quantity;
       exist.sellPrice = sp;
-      exist.profitLoss += quantity * (sp - exist.buyPrice);
+      exist.profitLoss = parseFloat(exist.profitLoss) + parseFloat(parseFloat(quantity) * parseFloat((sp - exist.buyPrice)));
+      console.log(exist.profitLoss);
       accnt.totalamount += quantity * sp;
       accnt.stockamount -= quantity * sp;
       await accnt.save();
@@ -2168,7 +2158,7 @@ const getPrice = asyncHandler(async (req, res) => {
 });
 
 const getPortfolio = asyncHandler(async(req,res)=>{
-  const port = Portfolio.find({portfolioHolder : req.body.id});
+  const port = await Portfolio.find({portfolioHolder : req.body.id});
   if(port){
     res.json({
       port

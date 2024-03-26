@@ -170,7 +170,7 @@ const getData = asyncHandler(async (req, res) => {
       totalamount: accnt.totalamount,
       totalloan: accnt.loanamount,
       totalfd: accnt.fixeddeposit,
-      totalstocks: 0,
+      totalstocks: accnt.stockamount,
       name: user.userName,
     });
   } else {

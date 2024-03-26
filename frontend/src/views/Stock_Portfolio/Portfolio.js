@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import StockNavbar from '../../components/StockNavbar/StockNavbar';
 import './Portfolio.css';
 import { FaSearch } from 'react-icons/fa';
@@ -14,6 +14,7 @@ const Portfolio = () => {
   const [lowprice,setLowPrice] = useState(0.0);
   const [open,setOpen] = useState(0.0);
   const [volume,setVolume] = useState(0);
+  const [portfolio,setPortfolio] = useState([]);
 
   const stockNames = [
     { name: "20 Microns Limited", symbol: "20MICRONS" },
@@ -2066,6 +2067,37 @@ const Portfolio = () => {
   const item = JSON.parse(localStorage.getItem('userInfo'));
   console.log(item);
   const id = item._id;
+
+  const getData = async(id)=>{
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const data  = await axios.post(
+        "http://localhost:5000/api/portfolio/getportfolio",
+        { id },
+        config
+      );
+      // console.log(data.data.port);
+      return data;
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    // const name = item.name;
+    const fetchData = async() =>{
+    const data = await getData(id);
+    console.log(data.data.port);
+    setPortfolio(data.data.port);
+    }
+    fetchData();
+  },[portfolio]);
+
   const handleInputChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -2102,6 +2134,9 @@ const Portfolio = () => {
         );
         console.log(data);
       }
+      setSelectedStock(null);
+      const data = await getData(id);
+      setPortfolio(data.data.port);
     }catch(error){
       console.log(error);
     }
@@ -2201,31 +2236,33 @@ const Portfolio = () => {
           {/* Your table code goes here */}
           <table className="stock-table">
             <thead>
-              <tr>
+            <tr>
                 <th>Stock Name</th>
-                <th>Price</th>
+                {/* <th>Price</th> */}
                 <th>Cost Price</th>
                 <th>Selling Price</th>
+                <th>Quantity</th>
                 <th>Profit/Loss</th>
-                <th>Buy</th>
-                <th>Sell</th>
+                {/* <th>Buy</th>
+                <th>Sell</th> */}
               </tr>
             </thead>
             <tbody>
-              {/* Populate table rows dynamically */}
-              <tr>
-                <td>Stock 1</td>
-                <td>100</td>
-                <td>90</td>
-                <td>110</td>
-                <td>+10</td>
-                <td>
+            {portfolio.map((portt, index) => (
+            <tr key={index}>
+              <td >{portt.stockName}</td>
+              <td >{portt.buyPrice}</td>
+              <td >{portt.sellPrice}</td>
+              <td >{portt.quantity}</td>
+              <td>{portt.profitLoss}</td>
+              {/* <td>
                   <button className="buy-button">Buy</button>
                 </td>
                 <td>
                   <button className="sell-button">Sell</button>
-                </td>
-              </tr>
+                </td> */}
+            </tr>
+          ))}
             </tbody>
           </table>
         </div>

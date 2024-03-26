@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import StockNavbar from '../../components/StockNavbar/StockNavbar';
-import './Predict.css';
-import { FaSearch } from 'react-icons/fa';
+import React, { useState } from "react";
+import StockNavbar from "../../components/StockNavbar/StockNavbar";
+import "./Predict.css";
+import { FaSearch } from "react-icons/fa";
+import axios from "axios";
 
 const Predict = () => {
-
-  const [searchResult, setSearchResult] = useState([]); 
-  const [searchQuery, setSearchQuery] = useState(''); 
+  const [searchResult, setSearchResult] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStock,setSelectedStock] = useState(null);
+  const [price1,setPrice1] = useState(0);
+  const [price2,setPrice2] = useState(0);
+  const [price3,setPrice3] = useState(0);
+  const [price4,setPrice4] = useState(0);
+  const [price5,setPrice5] = useState(0);
 
   const stockNames = [
     { name: "20 Microns Limited", symbol: "20MICRONS" },
@@ -2054,25 +2060,49 @@ const Predict = () => {
     { name: "ZUARI INDUSTRIES LIMITED", symbol: "ZUARIIND" },
     { name: "Zydus Lifesciences Limited", symbol: "ZYDUSLIFE" },
     { name: "Zydus Wellness Limited", symbol: "ZYDUSWELL" },
-  ]; 
+  ];
 
   const handleInputChange = (e) => {
     const query = e.target.value;
-    setSearchQuery(query); 
+    setSearchQuery(query);
 
-    
     const results = stockNames
-    .filter((stock) => stock.name.toLowerCase().includes(query.toLowerCase()))
-    .slice(0,3);
-    setSearchResult(results); 
+      .filter((stock) => stock.name.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 3);
+    setSearchResult(results);
   };
 
-  const handlePredict = (stockName) => {
-    
-    console.log(`Predicting for ${stockName}`);
+  const handlePredict = async (stockName) => {
+    let symbol = stockName.symbol;
+    symbol = symbol + ".BO";
+    console.log(symbol);
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const resp = await axios.post(
+        "http://localhost:8000/",
+        { symbol },
+        config
+      );
+      console.log(resp);
+      setPrice1(resp.data.price1);
+      setPrice2(resp.data.price2);
+      setPrice3(resp.data.price3);
+      setPrice4(resp.data.price4);
+      setPrice5(resp.data.price5);
+      setSelectedStock(stockName);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(`Predicting for ${stockName.name}`);
     // Add your prediction logic here
-};
-
+  };
+  const closeDialog = () => {
+    setSelectedStock(null);
+  };
 
   return (
     <div>
@@ -2086,7 +2116,7 @@ const Predict = () => {
               placeholder="Search..."
               className="search-input"
               value={searchQuery}
-              onChange={handleInputChange} 
+              onChange={handleInputChange}
             />
             <FaSearch className="search-icon" />
           </div>
@@ -2100,18 +2130,36 @@ const Predict = () => {
                     {/* <div className="buy-sell-buttons">
                       <button onClick={() => handleBuySell(stock, 'buy')} className="buy-button">Predict</button>
                     </div> */}
-                     <div className="predict-button-container">
-                     <button onClick={() => handlePredict(stock)} className="predict-button">Predict</button>
+                    <div className="predict-button-container">
+                      <button
+                        onClick={() => handlePredict(stock)}
+                        className="predict-button"
+                      >
+                        Predict
+                      </button>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           )}
+          { selectedStock && (
+            <div className="dialog">
+            <div className="dialog-content">
+              <h2>{selectedStock.name}</h2>
+              <span>Day+1 : {price1}</span><br></br>
+              <span>Day+2 : {price2}</span><br></br>
+              <span>Day+3 : {price3}</span><br></br>
+              <span>Day+4 : {price4}</span><br></br>
+              <span>Day+5 : {price5}</span><br></br>
+              <button onClick={closeDialog} className="close-button">Close</button>
+            </div>
           </div>
+          )}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Predict;
