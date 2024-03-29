@@ -146,16 +146,16 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-
   if (user && (await user.matchPassword(password))) {
     console.log(user);
     if (user.isVerified) {
       req.session.user = user;
-      res.json({
+      res.status(200).json({
         _id: user._id,
         name: user.name,
         email: user.email,
         token: generateToken(user._id),
+        message: 'Login successful'
       });
     } else {
       try {
