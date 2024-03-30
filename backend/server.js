@@ -13,9 +13,18 @@ dotenv.config({path : '../.env'})
 connectDB();
 const app = express();
 
-app.use(cors())
+app.use(cors({
+  origin : ["*"],
+  methods :["POST","GET"],
+  credentials:true
+}));
 app.use(session({secret: 'NeoNest', resave: true, saveUninitialized: true}))
 app.use(express.json());
+
+app.use("/",(req,res)=>{
+  res.send("Hello From NeoNest");
+});
+
 app.use("/api/user", userRoutes);
 app.use("/api/account",accountRoutes);
 app.use("/api/transaction",transactionRoutes);
