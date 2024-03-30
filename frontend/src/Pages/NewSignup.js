@@ -48,7 +48,7 @@ const NewSignup = () => {
         },
       };
       const data = await axios.post(
-        "http://localhost:5000/api/user/aadharsignup",
+        "https://neonest-backend.vercel.app/api/user/aadharsignup",
         {
           aadhar,
         },

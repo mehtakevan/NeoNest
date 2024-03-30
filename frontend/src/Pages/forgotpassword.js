@@ -47,7 +47,7 @@ const ForgotPassword = () => {
               },
             };
             const data  = await axios.post(
-              "http://localhost:5000/api/user/forgotpassword",
+              "https://neonest-backend.vercel.app/api/user/forgotpassword",
               {
                 email
               },

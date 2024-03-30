@@ -33,7 +33,7 @@ const Signup = () => {
       };
 
       const data = await axios.post(
-        "http://localhost:5000/api/user/getuserdata",
+        "https://neonest-backend.vercel.app/api/user/getuserdata",
         { email },
         config
       );
@@ -152,7 +152,7 @@ const Signup = () => {
         },
       };
       const data = await axios.post(
-        "http://localhost:5000/api/user",
+        "https://neonest-backend.vercel.app/api/user",
         {
           userName,
           email,

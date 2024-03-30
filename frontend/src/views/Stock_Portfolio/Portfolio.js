@@ -2077,7 +2077,7 @@ const Portfolio = () => {
       };
 
       const data  = await axios.post(
-        "http://localhost:5000/api/portfolio/getportfolio",
+        "https://neonest-backend.vercel.app/api/portfolio/getportfolio",
         { id },
         config
       );
@@ -2120,7 +2120,7 @@ const Portfolio = () => {
       
       if(action === "buy"){
         const {data}  = await axios.post(
-          "http://localhost:5000/api/portfolio/buystock",
+          "https://neonest-backend.vercel.app/api/portfolio/buystock",
           { id,name:selectedStock.name,quantity,bp:price },
           config
         );
@@ -2128,7 +2128,7 @@ const Portfolio = () => {
       }
       else{
         const {data}  = await axios.post(
-          "http://localhost:5000/api/portfolio/sellstock",
+          "https://neonest-backend.vercel.app/api/portfolio/sellstock",
           { id,name:selectedStock.name,quantity,sp:price },
           config
         );
@@ -2152,7 +2152,7 @@ const Portfolio = () => {
       };
 
       const {data}  = await axios.post(
-        "http://localhost:5000/api/portfolio/getprice",
+        "https://neonest-backend.vercel.app/api/portfolio/getprice",
         { name:selected.name },
         config
       );

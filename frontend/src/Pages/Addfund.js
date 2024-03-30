@@ -36,7 +36,7 @@ const Addfund = () => {
       };
 
       const data  = await axios.post(
-        "http://localhost:5000/api/transaction/createorder",
+        "https://neonest-backend.vercel.app/api/transaction/createorder",
         { amount },
         config
       );
@@ -55,7 +55,7 @@ const Addfund = () => {
             // alert(response.razorpay_signature);
 
             const res = await axios.post(
-                "http://localhost:5000/api/transaction/addfund",
+                "https://neonest-backend.vercel.app/api/transaction/addfund",
                 { email,amount },
                 config
             )

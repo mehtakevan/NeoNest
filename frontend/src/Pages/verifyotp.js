@@ -36,7 +36,7 @@ const Verifyotp = () => {
         },
       };
       const data  = await axios.post(
-        "http://localhost:5000/api/user/otp",
+        "https://neonest-backend.vercel.app/api/user/otp",
         {
           email,
           otp

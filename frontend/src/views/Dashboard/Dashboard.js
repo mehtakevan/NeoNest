@@ -32,7 +32,7 @@ const Dashboard = () => {
       };
 
       const data  = await axios.post(
-        "http://localhost:5000/api/account/getData",
+        "https://neonest-backend.vercel.app/api/account/getData",
         { email },
         config
       );

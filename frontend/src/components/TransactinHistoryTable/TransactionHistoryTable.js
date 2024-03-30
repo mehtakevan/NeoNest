@@ -17,7 +17,7 @@ const TransactionHistoryTable = () => {
       };
 
       const data  = await axios.post(
-        "http://localhost:5000/api/transaction/gettrandata",
+        "https://neonest-backend.vercel.app/api/transaction/gettrandata",
         { email },
         config
       );
