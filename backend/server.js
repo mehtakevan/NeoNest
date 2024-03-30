@@ -14,7 +14,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin : ["*"],
+  origin : ["https://neo-nest.vercel.app"],
   methods :["POST","GET"],
   credentials:true
 }));
