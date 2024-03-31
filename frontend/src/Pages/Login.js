@@ -144,7 +144,7 @@ const Login = () => {
       >
         Login
       </button>
-      <a href="http://localhost:3000/forgotpassword"><div className="hover:underline">Forgot Password?</div></a>
+      <a href="https://neo-nest.vercel.app/forgotpassword"><div className="hover:underline">Forgot Password?</div></a>
     </div>
     </div>
   </div>

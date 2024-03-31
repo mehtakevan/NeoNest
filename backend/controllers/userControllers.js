@@ -79,7 +79,7 @@ const sendmail = asyncHandler(async (email, flag) => {
       from: "sdpneobank12@gmail.com",
       to: email,
       subject: "Sending Email using Node.js",
-      text: `Click on this link to access the API: https://localhost:3000/setpassword/?email=${email}`,
+      text: `Click on this link to access the API: https://neo-nest.vercel.app/setpassword/?email=${email}`,
     };
   }
   try {

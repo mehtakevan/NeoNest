@@ -2083,7 +2083,7 @@ const Predict = () => {
         },
       };
       const resp = await axios.post(
-        "http://localhost:8000/",
+        "https://stock-market-prediction-m8ky.onrender.com/prediction",
         { symbol },
         config
       );
