@@ -87,9 +87,9 @@ const NewSignup = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-start bg-white  ">
-        <div className=" h-screen flex-col md:flex-row justify-center items-start md:pl-10 h-auto bg-white ">
-          <div class="mx-auto container rounded-lg shadow-2xl dark:border dark:bg-gray-900 dark:border-gray-700 h-full bg-gradient-to-r from-teal-500 to-teal-200">
-            <div className="w-full flex ms-4 items-center justify-center pb-10">
+        <div className=" h-screen flex-col md:flex-row justify-center items-start md:pl-10 pt-32 h-auto bg-white ">
+          <div class="mx-auto container rounded-lg shadow-2xl dark:border dark:bg-gray-900 dark:border-gray-700 h-80 bg-gradient-to-r from-teal-500 to-teal-200">
+            <div className="w-full flex ms-4 items-center justify-center">
               <div className="text-center">
                 <span className="mb-3 text-2xl md:text-4xl font-bold">
                   Create an Account
@@ -100,10 +100,10 @@ const NewSignup = () => {
                 </span>
               </div>
             </div>
-            <div class="grid grid-cols-2 gap-3 w-full">
-              <div class="w-full mx-2 flex justify-center">
-                <div className="grid grid-rows-4">
-                  <div className="py-2 md:py-4">
+            {/* <div class="grid grid-cols-2 gap-3 w-auto"> */}
+              <div class="w-auto mx-2 flex justify-center">
+                {/* <div className="grid grid-rows-2"> */}
+                  <div className="py-2 ml-32 md:py-4">
                     <span className="mb-2 text-sm md:text-md">
                       Aadhar Number
                     </span>
@@ -116,16 +116,16 @@ const NewSignup = () => {
                       />
                     </FormControl>
                   </div>
-                </div>
+                {/* </div> */}
               </div>
-            </div>
+            {/* </div> */}
             <button
               color="black"
               colorScheme="blue"
               width="100%"
-              style={{ marginTop: 15 }}
+              style={{ marginTop: 0 }}
               onClick={submitHandler}
-              className="w-1/2 p-0 ms-24 justify-center border border-gray-300 text-sm md:text-md rounded-lg mb-4 md:mb-6 hover:bg-black hover:text-white"
+              className="w-1/2 p-2 ms-32 justify-center border border-gray-300 text-sm md:text-md rounded-lg mb-1 md:mb-6 hover:bg-black hover:text-white"
               // isLoading={picLoading}
             >
               Sign Up
@@ -138,7 +138,7 @@ const NewSignup = () => {
             width="400"
             height="100"
             frameBorder="0"
-            className="w-screen h-screen mt-40 mr-40 md:block object-cover rounded-r-2xl"
+            className="w-screen h-screen mt-10 mr-40 md:block object-cover rounded-r-2xl"
             allowFullScreen
           ></iframe>
         </div>
